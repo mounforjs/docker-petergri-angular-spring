@@ -1,1 +1,54 @@
-<p>register-form works!</p>
+<form #registerForm="ngForm" style="margin-top: 5%" (ngSubmit)="onSubmit(registerForm.value)">
+  <div>
+    <div style="margin-top: 5%" class="d-flex justify-content-center">
+      <label for="userName">Username</label>
+    </div>
+    <div class="d-flex justify-content-center">
+      <input
+        ngModel
+        style="width: 300px; margin-top: 2%"
+        class="form-control"
+        id="userName"
+        name="userName"
+        #userName="ngModel"
+        required
+        type="text">
+    </div>
+    <div style="margin-top: 5%" class="d-flex justify-content-center">
+      <label for="userName">Password</label>
+    </div>
+    <div class="d-flex justify-content-center">
+      <input
+        ngModel
+        style="width: 300px; margin-top: 2%"
+        class="form-control"
+        id="Password"
+        name="password"
+        #password="ngModel"
+        required
+        type="text">
+    </div>
+
+    <div style="margin-top: 5%" class="d-flex justify-content-center">
+      <label for="userName">Confirm Password</label>
+    </div>
+    <div class="d-flex justify-content-center">
+      <input
+        ngModel
+        style="width: 300px; margin-top: 2%"
+        class="form-control"
+        id="ConfirmPassword"
+        name="confirmPassword"
+        #confirmPassword="ngModel"
+        required
+        type="text">
+    </div>
+    <div class="d-flex justify-content-center" style="margin-top: 5%">
+      <button
+        class="btn btn-primary"
+        type="submit">Enter
+      </button>
+    </div>
+  </div>
+</form>
+

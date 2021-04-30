@@ -12,6 +12,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { AdminValidationComponent } from './admin-validation/admin-validation.component';
 import { MainManuComponent } from './main-manu/main-manu.component';
+import { FormsModule }   from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MainManuComponent } from './main-manu/main-manu.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     RouterModule.forRoot([
       {path: '', component: MainManuComponent},
       {path: 'register', component: RegisterFormComponent},
