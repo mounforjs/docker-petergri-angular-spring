@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-page',
@@ -9,10 +10,15 @@ export class LoginPageComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
 
   }
+
+  onSubmit(form:any){
+    this.router.navigate(['/chatMenu']);
+  }
+
 
 }

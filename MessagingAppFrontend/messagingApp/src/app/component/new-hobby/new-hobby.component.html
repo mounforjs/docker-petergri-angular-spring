@@ -1,0 +1,9 @@
+<p style="text-align:center; margin-top: 5%">Hobbies</p>
+
+<ul *ngFor="let hobby of hobbies" class="list-group">
+  <div class="d-flex justify-content-center">
+    <li class="list-group-item">
+      <div class="btn btn-primary" style="width: 300px">{{ hobby.name }}</div>
+    </li>
+  </div>
+</ul>

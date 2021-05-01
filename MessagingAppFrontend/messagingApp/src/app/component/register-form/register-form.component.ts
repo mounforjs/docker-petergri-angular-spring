@@ -7,11 +7,6 @@ import {Component, OnInit} from '@angular/core';
 })
 export class RegisterFormComponent implements OnInit {
 
-  username: string = "";
-  password1: string = "";
-  password2: string = "";
-
-
   constructor() {
   }
 
@@ -19,19 +14,14 @@ export class RegisterFormComponent implements OnInit {
   }
 
   onSubmit(form: any) {
-
-    this.username = form.userName;
-    this.password1 = form.password;
-    this.password2 = form.confirmPassword;
-
-    if ((this.password1 === this.password2) && this.usernameCheck()) {
+    if ((form.password === form.confirmPassword) && this.usernameCheck(form.userName)) {
       //save user to db
     } else {
       // error
     }
   }
 
-  usernameCheck() {
+  usernameCheck(userName:string) {
     //check if user already exist
     return false;
   }

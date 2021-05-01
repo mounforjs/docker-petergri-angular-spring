@@ -4,27 +4,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import {RouterModule} from "@angular/router";
 import { AppComponent } from './app.component';
-import { ChatMenuComponent } from './Component/chat-menu/chat-menu.component';
-import { ChatComponent } from './Component/chat/chat.component';
-import { NewHobbyComponent } from './Component/new-hobby/new-hobby.component';
-import { NewChatRoomComponent } from './Component/new-chat-room/new-chat-room.component';
-import { RegisterFormComponent } from './Component/register-form/register-form.component';
-import { LoginPageComponent } from './Component/login-page/login-page.component';
-import { AdminValidationComponent } from './Component/admin-validation/admin-validation.component';
-import { MainManuComponent } from './Component/main-manu/main-manu.component';
+import { ChatMenuComponent } from './component/chat-menu/chat-menu.component';
+import { ChatRoomComponent } from './component/chat/chat-room.component';
+import { NewHobbyComponent } from './component/new-hobby/new-hobby.component';
+import { NewChatRoomComponent } from './component/new-chat-room/new-chat-room.component';
+import { RegisterFormComponent } from './component/register-form/register-form.component';
+import { LoginPageComponent } from './component/login-page/login-page.component';
+import { AdminValidationComponent } from './component/admin-validation/admin-validation.component';
+import { MainManuComponent } from './component/main-manu/main-manu.component';
 import { FormsModule }   from '@angular/forms';
+import { UserComponent } from './component/user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatMenuComponent,
-    ChatComponent,
+    ChatRoomComponent,
     NewHobbyComponent,
     NewChatRoomComponent,
     RegisterFormComponent,
     LoginPageComponent,
     AdminValidationComponent,
-    MainManuComponent
+    MainManuComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,10 @@ import { FormsModule }   from '@angular/forms';
     RouterModule.forRoot([
       {path: '', component: MainManuComponent},
       {path: 'register', component: RegisterFormComponent},
+      {path: 'chatMenu', component: ChatMenuComponent},
+      {path: 'chat', component: ChatRoomComponent},
+      {path: 'createChatRoom', component: NewChatRoomComponent},
+      {path: 'chooseHobby', component: NewHobbyComponent},
       {path: 'login', component: LoginPageComponent}
     ])
   ],

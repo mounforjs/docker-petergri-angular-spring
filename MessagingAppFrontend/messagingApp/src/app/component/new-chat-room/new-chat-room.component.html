@@ -1,0 +1,9 @@
+<p style="text-align:center; margin-top: 5%">Chats</p>
+<div style="margin-top: 10%">
+  <ul *ngFor="let user of users" class="list-group">
+    <li class="list-group-item">
+      <app-user [user]="user"></app-user>
+    </li>
+  </ul>
+</div>
+

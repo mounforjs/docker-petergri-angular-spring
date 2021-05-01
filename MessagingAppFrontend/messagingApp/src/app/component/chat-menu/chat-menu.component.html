@@ -1,0 +1,19 @@
+<p style="text-align:center; margin-top: 5%">Chats</p>
+
+<ul *ngFor="let chat of chats" class="list-group">
+  <div class="d-flex justify-content-center">
+    <li class="list-group-item">
+      <div class="btn btn-primary" (click)="showChatScreen()" style="width: 300px">{{ chat.name }}</div>
+    </li>
+  </div>
+</ul>
+
+<div style="margin-top: 20%; padding: 20px">
+  <button class="btn btn-primary" (click)="chooseNewHobby()">
+    Choose a hobby
+  </button>
+
+  <button class="btn btn-primary" style="float: right" (click)="createNewChat()">
+    Create new Chatroom
+  </button>
+</div>
