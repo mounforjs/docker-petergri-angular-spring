@@ -10,4 +10,12 @@ class MessagingAppSpringApplicationTests {
     void contextLoads() {
     }
 
+
+    void insertUser(){
+
+
+
+
+    }
+
 }

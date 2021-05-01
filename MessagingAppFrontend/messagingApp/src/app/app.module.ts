@@ -14,6 +14,7 @@ import { AdminValidationComponent } from './component/admin-validation/admin-val
 import { MainManuComponent } from './component/main-manu/main-manu.component';
 import { FormsModule }   from '@angular/forms';
 import { UserComponent } from './component/user/user.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -32,11 +33,12 @@ import { UserComponent } from './component/user/user.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {path: '', component: MainManuComponent},
       {path: 'register', component: RegisterFormComponent},
       {path: 'chatMenu', component: ChatMenuComponent},
-      {path: 'chat', component: ChatRoomComponent},
+      {path: 'chat/:name', component: ChatRoomComponent},
       {path: 'createChatRoom', component: NewChatRoomComponent},
       {path: 'chooseHobby', component: NewHobbyComponent},
       {path: 'login', component: LoginPageComponent}

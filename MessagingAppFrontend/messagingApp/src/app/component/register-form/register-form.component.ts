@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {LoginService} from "../../service/LoginService";
+import {User} from "../../model/User";
 
 @Component({
   selector: 'register-form',
@@ -7,21 +9,27 @@ import {Component, OnInit} from '@angular/core';
 })
 export class RegisterFormComponent implements OnInit {
 
-  constructor() {
+  constructor(private userService: LoginService) {
   }
 
   ngOnInit(): void {
   }
 
   onSubmit(form: any) {
-    if ((form.password === form.confirmPassword) && this.usernameCheck(form.userName)) {
-      //save user to db
+    if ((form.password === form.confirmPassword)) {
+      let user: User = new User();
+      console.log(form)
+      user.userName = form.userName;
+      user.userPassword = form.password;
+      this.userService.addUser(user).subscribe(user => {
+        console.log("User added")
+      });
     } else {
-      // error
+      console.log("Error")
     }
   }
 
-  usernameCheck(userName:string) {
+  usernameCheck(userName: string) {
     //check if user already exist
     return false;
   }
