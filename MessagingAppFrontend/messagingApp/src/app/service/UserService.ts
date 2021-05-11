@@ -13,7 +13,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class UserService {
 
   getUserUrl: string = 'http://localhost:8080/getUser';
   addUserUrl: string = 'http://localhost:8080/addUser';

@@ -8,23 +8,20 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class UserController {
 
-    DatabaseConnection databaseConnection = new DatabaseConnection();
-    Statement statement = databaseConnection.init();
-
+    DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
 
     @CrossOrigin
     @GetMapping("/getUser")
     List<UserInfoDTO> getAllUsers() {
         List<UserInfoDTO> users = new ArrayList<>();
         try {
-            ResultSet resultSet = statement.executeQuery("select * from user_info");
+            ResultSet resultSet = databaseConnection.statement.executeQuery("select * from user_info");
             while(resultSet.next()){
                 users.add(new UserInfoDTO(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3)));
             }
@@ -42,19 +39,12 @@ public class UserController {
 
     @CrossOrigin
     @RequestMapping("/addUser")
-    public UserInfo addUser(@RequestBody UserInfo user) {
-        return null;
-    }
-
-    @CrossOrigin
-    @RequestMapping("/removeAllUser")
-    public void removeAllUser() {
-
-    }
-
-    @CrossOrigin
-    @RequestMapping("/removeUser")
-    public UserInfo removeUser(@RequestBody UserInfo user) {
+    public UserInfo addUser(@RequestBody UserInfoDTO user) {
+        try {
+            databaseConnection.statement.executeUpdate("INSERT INTO user_info (user_name, user_password) VALUES (" + "'"+ user.getUserName() + "' , " +  user.getUserPassword() + ")");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
         return null;
     }
 
