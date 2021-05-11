@@ -1,0 +1,9 @@
+
+{{ chat | json}}
+<ul *ngFor="let message of chat.messages" class="list-group">
+  <div class="d-flex justify-content-center">
+    <li class="list-group-item">
+      <p> {{ message.text }} </p>
+    </li>
+  </div>
+</ul>

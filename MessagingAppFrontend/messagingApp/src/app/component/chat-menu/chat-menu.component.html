@@ -3,7 +3,7 @@
 <ul *ngFor="let chat of chats" class="list-group">
   <div class="d-flex justify-content-center">
     <li class="list-group-item">
-      <div class="btn btn-primary" (click)="showChatScreen()" style="width: 300px">{{ chat.name }}</div>
+      <div class="btn btn-primary" [routerLink]="['chatMenu/', chat]" style="width: 300px">{{ chat.name }}</div>
     </li>
   </div>
 </ul>

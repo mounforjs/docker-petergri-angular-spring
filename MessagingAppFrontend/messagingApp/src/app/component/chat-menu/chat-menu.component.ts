@@ -31,7 +31,4 @@ export class ChatMenuComponent implements OnInit {
     this.router.navigate(['/chooseHobby']);
   }
 
-  showChatScreen() {
-    this.router.navigate(['/chat']);
-  }
 }

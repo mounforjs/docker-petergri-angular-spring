@@ -3,6 +3,9 @@ package com.example.messagingappspring;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -11,11 +14,7 @@ public class UserController {
     @Autowired
     UserRepository repository;
 
-    @CrossOrigin
-    @GetMapping("/hello")
-    String hello() {
-        return "Hellooo";
-    }
+
 
     @CrossOrigin
     @GetMapping("/getUser")

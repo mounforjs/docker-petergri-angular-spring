@@ -1,7 +1,9 @@
 import {User} from "./User";
+import {Message} from "./Message";
 
 export class Chat {
-  id:string = "";
-  name:string = "";
-  users:User[] = [];
+  id: string = "";
+  name: string | null = "";
+  users: User[] = [];
+  messages: Message[] = [];
 }

@@ -37,8 +37,8 @@ import {HttpClientModule} from "@angular/common/http";
     RouterModule.forRoot([
       {path: '', component: MainManuComponent},
       {path: 'register', component: RegisterFormComponent},
+      {path: 'chatMenu/:chat', component: ChatRoomComponent},
       {path: 'chatMenu', component: ChatMenuComponent},
-      {path: 'chat/:name', component: ChatRoomComponent},
       {path: 'createChatRoom', component: NewChatRoomComponent},
       {path: 'chooseHobby', component: NewHobbyComponent},
       {path: 'login', component: LoginPageComponent}
