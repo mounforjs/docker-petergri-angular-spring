@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../model/User";
+import {UserService} from "../../service/UserService";
+import {ChatService} from "../../service/ChatService";
+import {ChatDTO} from "../../model/ChatDTO";
 
 @Component({
   selector: 'new-chat-room',
@@ -10,16 +13,12 @@ export class NewChatRoomComponent implements OnInit {
 
   users:User[] = [];
   usersForNewChatRoom:User[] = []
-  constructor() { }
+  constructor(private userService: UserService, private chatService:ChatService) { }
 
   ngOnInit(): void {
-    let user1 = new User();
-    user1.userName = "User 21";
-    let user2 = new User();
-    user2.userName = "User 32";
-    let user3 = new User();
-    user3.userName = "User 51";
-    this.users.push(user1,user2,user3);
+    this.userService.getUsers().subscribe(users => {
+      this.users = users;
+    });
   }
 
   addUserToNewChat(user: User) {
@@ -33,8 +32,13 @@ export class NewChatRoomComponent implements OnInit {
     }
   }
 
-
-  createNewChatRoom() {
-    // in der Datenbank ein neues ChatRoom erstellen mit den ausgewählten Usern
+  createNewChatRoom(form:any) {
+    let chat:ChatDTO = new ChatDTO();
+    chat.chatName = form.chatName;
+    chat.chatDescription = form.chatDescription;
+    chat.creatorId = "1";
+    this.chatService.addNewChat(chat).subscribe(user => {
+      console.log("Chat added")
+    });
   }
 }

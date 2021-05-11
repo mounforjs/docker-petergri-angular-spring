@@ -1,9 +1,6 @@
 package com.example.messagingappspring.controller;
-
 import com.example.messagingappspring.DTO.UserInfoDTO;
-import com.example.messagingappspring.UserInfo;
 import com.example.messagingappspring.database.DatabaseConnection;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.ResultSet;
@@ -39,13 +36,12 @@ public class UserController {
 
     @CrossOrigin
     @RequestMapping("/addUser")
-    public UserInfo addUser(@RequestBody UserInfoDTO user) {
+    public void addUser(@RequestBody UserInfoDTO user) {
         try {
             databaseConnection.statement.executeUpdate("INSERT INTO user_info (user_name, user_password) VALUES (" + "'"+ user.getUserName() + "' , " +  user.getUserPassword() + ")");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return null;
     }
 
 }

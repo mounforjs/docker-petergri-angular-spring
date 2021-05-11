@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginService} from "../../service/LoginService";
+import {UserService} from "../../service/UserService";
 import {User} from "../../model/User";
 
 @Component({
@@ -9,7 +9,7 @@ import {User} from "../../model/User";
 })
 export class RegisterFormComponent implements OnInit {
 
-  constructor(private userService: LoginService) {
+  constructor(private userService: UserService) {
   }
 
   ngOnInit(): void {
