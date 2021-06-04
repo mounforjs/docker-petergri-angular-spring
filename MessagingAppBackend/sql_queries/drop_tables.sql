@@ -1,0 +1,11 @@
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE user_info;
+DROP TABLE is_friend_of;
+DROP TABLE admin_info;
+DROP TABLE message;
+DROP TABLE chat;
+DROP TABLE hobby;
+DROP TABLE is_member;
+DROP TABLE invites;
+DROP TABLE chooses;
+SET FOREIGN_KEY_CHECKS = 1;
