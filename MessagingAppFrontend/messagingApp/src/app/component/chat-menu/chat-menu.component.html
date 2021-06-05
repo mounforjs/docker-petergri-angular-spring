@@ -3,17 +3,21 @@
 <ul *ngFor="let chat of chats" class="list-group">
   <div class="d-flex justify-content-center">
     <li class="list-group-item">
-      <div class="btn btn-primary" [routerLink]="['chatMenu/', chat]" style="width: 300px">{{ chat.name }}</div>
+      <div class="btn btn-primary" [routerLink]="['chatMenu/', chat]" style="width: 300px">{{ chat.chatName }}</div>
     </li>
   </div>
 </ul>
 
-<div style="margin-top: 20%; padding: 20px">
+<div class="d-flex justify-content-center" style="margin-top: 20%;">
   <button class="btn btn-primary" (click)="chooseNewHobby()">
     Choose a hobby
   </button>
-
-  <button class="btn btn-primary" style="float: right" (click)="createNewChat()">
+  <div>
+  <button class="btn btn-primary" (click)="validateAdmin()">
+    Admin Validation
+  </button>
+  <button class="btn btn-primary" (click)="createNewChat()">
     Create new Chatroom
   </button>
+</div>
 </div>

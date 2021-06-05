@@ -12,4 +12,7 @@ export class AdminValidationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(form: any) {
+    console.log(form)
+  }
 }

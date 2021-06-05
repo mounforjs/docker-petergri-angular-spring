@@ -1,1 +1,38 @@
-<p>admin-validation works!</p>
+<form #registerForm="ngForm" style="margin-top: 5%" (ngSubmit)="onSubmit(registerForm.value)">
+  <div>
+    <div style="margin-top: 5%" class="d-flex justify-content-center">
+      <label for="email">E-Mail</label>
+    </div>
+    <div class="d-flex justify-content-center">
+      <input
+        ngModel
+        style="width: 300px; margin-top: 2%"
+        class="form-control"
+        id="email"
+        name="email"
+        #email="ngModel"
+        required
+        type="text">
+    </div>
+    <div style="margin-top: 5%" class="d-flex justify-content-center">
+      <label for="birthdate">Birthdate</label>
+    </div>
+    <div class="d-flex justify-content-center">
+      <input
+        ngModel
+        style="width: 300px; margin-top: 2%"
+        class="form-control"
+        id="birthdate"
+        name="birthdate"
+        #birthdate="ngModel"
+        required
+        type="text">
+    </div>
+    <div class="d-flex justify-content-center" style="margin-top: 5%">
+      <button
+        class="btn btn-primary"
+        type="submit">Enter
+      </button>
+    </div>
+  </div>
+</form>

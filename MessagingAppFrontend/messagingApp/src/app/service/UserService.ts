@@ -15,6 +15,7 @@ const httpOptions = {
 })
 export class UserService {
 
+  getUsersUrl: string = 'http://localhost:8080/getUsers';
   getUserUrl: string = 'http://localhost:8080/getUser';
   addUserUrl: string = 'http://localhost:8080/addUser';
   removeAllUserUrl: string = 'http://localhost:8080/removeAllUser';
@@ -24,7 +25,11 @@ export class UserService {
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.getUserUrl);
+    return this.http.get<User[]>(this.getUsersUrl);
+  }
+
+  getUser(user: User): Observable<User> {
+    return this.http.post<User>(this.getUserUrl, user, httpOptions);
   }
 
   addUser(user: User): Observable<User> {
