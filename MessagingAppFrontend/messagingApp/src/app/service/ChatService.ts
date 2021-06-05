@@ -18,6 +18,7 @@ const httpOptions = {
 export class ChatService {
 
   getChatsUrl: string = 'http://localhost:8080/getChats';
+  getMessagesUrl: string = 'http://localhost:8080/getMessages';
   getChatUrl: string = 'http://localhost:8080/getChat/';
   addChatUrl: string = 'http://localhost:8080/addNewChat';
   addMessageUrl: string = 'http://localhost:8080/addMessage';
@@ -31,6 +32,10 @@ export class ChatService {
 
   getChats(): Observable<ChatDTO[]> {
     return this.http.get<ChatDTO[]>(this.getChatsUrl);
+  }
+
+  getMessages(chatId: string | null): Observable<MessageDTO[]> {
+    return this.http.get<MessageDTO[]>(this.getMessagesUrl + "?chatId=" + chatId);
   }
 
   addNewChat(chat: ChatDTO): Observable<ChatDTO> {

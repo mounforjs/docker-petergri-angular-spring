@@ -1,13 +1,16 @@
+<div class="d-flex justify-content-center">
+<p style="color: cadetblue; font-size: xx-large">{{ chat.chatName }}</p>
+</div>
 
-{{ chat | json}}
 
-<!--<ul *ngFor="let message of chat.messages" class="list-group">
+<ul *ngFor="let message of messages" class="list-group">
   <div class="d-flex justify-content-center">
     <li class="list-group-item">
-      <message> {{ message.text }} </message>
+      <p> {{ message.content }}</p>
     </li>
   </div>
-</ul>-->
+</ul>
+
 
 <div style="margin-top: 80%" class="d-flex justify-content-center">
   <label for="messageBox">Message Box</label>
@@ -22,5 +25,5 @@
     #messageBox="ngModel"
     required
     type="text">
-  <button type="button" class="btn btn-success" (click)="sendMessage(messageBox)">Send</button>
+  <button type="button" class="btn btn-success" (click)="sendMessage(messageBox);">Send</button>
 </div>

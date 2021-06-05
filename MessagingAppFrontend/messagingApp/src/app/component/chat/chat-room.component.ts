@@ -14,6 +14,7 @@ export class ChatRoomComponent implements OnInit {
 
   @Input()
   chat: ChatDTO = new ChatDTO;
+  messages:MessageDTO[] = [];
 
   constructor(private route: ActivatedRoute, private chatService: ChatService) {
 
@@ -26,17 +27,18 @@ export class ChatRoomComponent implements OnInit {
       this.chat.chatDescription = params.get('chatDescription');
       this.chat.creatorId = params.get('creatorId');
     })
+    this.chatService.getMessages(this.chat.chatId).subscribe(messages => {
+      this.messages = messages;
+    });
   }
-
 
   sendMessage(messageBox: any) {
     let message = new MessageDTO();
     message.content = messageBox.value;
     message.senderId = "1";
     message.chatId = this.chat.chatId;
-    this.chatService.sendMessage(message, this.chat).subscribe(message => {
-      console.log('message sent!')
-      console.log(message)
+    this.chatService.sendMessage(message, this.chat).subscribe(messages => {
+      this.messages = messages;
     });
   }
 }

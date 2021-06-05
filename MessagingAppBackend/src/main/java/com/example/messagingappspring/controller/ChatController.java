@@ -33,6 +33,21 @@ public class ChatController {
         return chats;
     }
 
+    @CrossOrigin
+    @GetMapping("/getMessages")
+    public List<MessageDTO> getAllMessages(@RequestParam String chatId) {
+        List<MessageDTO> messages = new ArrayList<>();
+        try {
+            ResultSet resultSet = databaseConnection.statement.executeQuery("select * from message where chat_id=" + chatId);
+            while (resultSet.next()) {
+                messages.add(new MessageDTO(resultSet.getString(2), resultSet.getString(4), resultSet.getString(5)));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return messages;
+    }
+
 
     @CrossOrigin
     @RequestMapping("/addNewChat")
