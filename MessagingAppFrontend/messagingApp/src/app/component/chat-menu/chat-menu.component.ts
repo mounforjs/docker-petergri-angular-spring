@@ -19,7 +19,6 @@ export class ChatMenuComponent implements OnInit {
   ngOnInit(): void {
     this.chatService.getChats().subscribe(chats => {
       this.chats = chats;
-      console.log(chats)
     });
   }
 

@@ -41,7 +41,7 @@
         type="text">
     </div>
     <div class="d-flex justify-content-center" style="margin-top: 10%">
-      <button class="btn btn-primary" (click)="createNewChatRoom(registerForm.value)">Create New Chat</button>
+      <button class="btn btn-primary" (click)="createNewChatRoom(registerForm.value); registerForm.reset()">Create New Chat</button>
     </div>
   </div>
 </div>

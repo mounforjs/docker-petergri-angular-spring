@@ -1,8 +1,8 @@
 export class ChatDTO {
 
-   chatId:string = "";
-   chatDescription:string = "";
-   chatName:string = "";
-   creatorId:string = "";
+   chatId:string | null = "";
+   chatDescription:string | null = "";
+   chatName:string | null = "";
+   creatorId:string | null = "";
 
 }

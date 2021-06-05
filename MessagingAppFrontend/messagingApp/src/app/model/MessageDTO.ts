@@ -1,5 +1,5 @@
 export class MessageDTO{
-  chatId:string = "";
+  chatId:string | null = "";
   content:string = "";
   senderId:string = "";
 }

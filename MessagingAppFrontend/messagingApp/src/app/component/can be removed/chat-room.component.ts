@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Message} from "../../model/Message";
 import {Chat} from "../../model/Chat";
 import {ActivatedRoute} from "@angular/router";
+import {ChatDTO} from "../../model/ChatDTO";
 
 @Component({
   selector: 'chat-room',
@@ -10,15 +11,11 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ChatRoomComponent implements OnInit {
 
-  @Input()
-  chat:Chat = new Chat();
 
-  constructor(private route: ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      console.log(params)
-    });
+
   }
 
 }

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/UserService";
 import {User} from "../../model/User";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'register-form',
@@ -9,7 +10,7 @@ import {User} from "../../model/User";
 })
 export class RegisterFormComponent implements OnInit {
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -22,7 +23,7 @@ export class RegisterFormComponent implements OnInit {
       user.userName = form.userName;
       user.userPassword = form.password;
       this.userService.addUser(user).subscribe(user => {
-        console.log("User added")
+        this.router.navigate(['/chatMenu']);
       });
     } else {
       console.log("Error")

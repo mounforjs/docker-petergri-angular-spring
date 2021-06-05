@@ -2,11 +2,13 @@ package com.example.messagingappspring.DTO;
 
 public class ChatDTO {
 
+    String chatId;
     String chatDescription;
     String chatName;
     String creatorId;
 
-    public ChatDTO(String chatDescription, String chatName, String creatorId) {
+    public ChatDTO(String chatId, String chatDescription, String chatName, String creatorId) {
+        this.chatId = chatId;
         this.chatDescription = chatDescription;
         this.chatName = chatName;
         this.creatorId = creatorId;
@@ -34,5 +36,13 @@ public class ChatDTO {
 
     public void setCreatorId(String creatorId) {
         this.creatorId = creatorId;
+    }
+
+    public String getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(String chatId) {
+        this.chatId = chatId;
     }
 }

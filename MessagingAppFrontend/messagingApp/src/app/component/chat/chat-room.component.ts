@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Chat} from "../../model/Chat";
 import {ActivatedRoute} from "@angular/router";
+import {ChatDTO} from "../../model/ChatDTO";
+import {ChatService} from "../../service/ChatService";
+import {MessageDTO} from "../../model/MessageDTO";
 
 @Component({
   selector: 'chat',
@@ -10,16 +13,30 @@ import {ActivatedRoute} from "@angular/router";
 export class ChatRoomComponent implements OnInit {
 
   @Input()
-  chat: Chat = new Chat;
-  constructor(private route: ActivatedRoute) {
+  chat: ChatDTO = new ChatDTO;
+
+  constructor(private route: ActivatedRoute, private chatService: ChatService) {
 
   }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.chat.name = params.get('name');
+      this.chat.chatName = params.get('chatName');
+      this.chat.chatId = params.get('chatId');
+      this.chat.chatDescription = params.get('chatDescription');
+      this.chat.creatorId = params.get('creatorId');
     })
   }
 
 
+  sendMessage(messageBox: any) {
+    let message = new MessageDTO();
+    message.content = messageBox.value;
+    message.senderId = "1";
+    message.chatId = this.chat.chatId;
+    this.chatService.sendMessage(message, this.chat).subscribe(message => {
+      console.log('message sent!')
+      console.log(message)
+    });
+  }
 }

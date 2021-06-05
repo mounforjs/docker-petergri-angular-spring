@@ -1,1 +1,26 @@
-Chat Name:   {{ chat.name }}
+
+{{ chat | json}}
+
+<!--<ul *ngFor="let message of chat.messages" class="list-group">
+  <div class="d-flex justify-content-center">
+    <li class="list-group-item">
+      <message> {{ message.text }} </message>
+    </li>
+  </div>
+</ul>-->
+
+<div style="margin-top: 80%" class="d-flex justify-content-center">
+  <label for="messageBox">Message Box</label>
+</div>
+<div class="d-flex justify-content-center">
+  <input
+    ngModel
+    style="width: 90%; margin-top: 2%"
+    class="form-control"
+    id="messageBox"
+    name="messageBox"
+    #messageBox="ngModel"
+    required
+    type="text">
+  <button type="button" class="btn btn-success" (click)="sendMessage(messageBox)">Send</button>
+</div>
