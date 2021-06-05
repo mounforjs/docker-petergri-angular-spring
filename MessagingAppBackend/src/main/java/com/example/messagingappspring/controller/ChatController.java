@@ -1,15 +1,36 @@
 package com.example.messagingappspring.controller;
 import com.example.messagingappspring.DTO.ChatDTO;
+import com.example.messagingappspring.DTO.UserInfoDTO;
 import com.example.messagingappspring.database.DatabaseConnection;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
 public class ChatController {
 
     DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
+
+
+    @CrossOrigin
+    @GetMapping("/getChats")
+    public List<ChatDTO> getAllChats() {
+        List<ChatDTO> chats = new ArrayList<>();
+        try {
+            ResultSet resultSet = databaseConnection.statement.executeQuery("select * from chat");
+            while (resultSet.next()) {
+                chats.add(new ChatDTO(resultSet.getString(3), resultSet.getString(4), resultSet.getString(5)));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return chats;
+    }
+
 
     @CrossOrigin
     @RequestMapping("/addNewChat")
@@ -20,12 +41,6 @@ public class ChatController {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-    }
-
-    @CrossOrigin
-    @RequestMapping("/testPoint")
-    String testPoint() {
-        return "It works";
     }
 
 }
