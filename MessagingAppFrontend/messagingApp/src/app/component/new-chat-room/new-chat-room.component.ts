@@ -47,7 +47,7 @@ export class NewChatRoomComponent implements OnInit {
     console.log(SessionService.getCurrentUser() instanceof Admin)
     if(SessionService.getCurrentUser() instanceof Admin) {
       this.chatService.addNewChat(chat).subscribe(user => {
-        console.log("Chat added")
+        this.router.navigate(['/chat-room']);
       });
     }
     else {

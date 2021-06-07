@@ -19,15 +19,21 @@ export class NewHobbyComponent implements OnInit {
     }
 
     let hobby1: Hobby = new Hobby();
-    hobby1.name = "Hobby1";
+    hobby1.name = "Football";
 
     let hobby2: Hobby = new Hobby();
-    hobby2.name = "Hobby2";
+    hobby2.name = "Basketball";
 
     let hobby3: Hobby = new Hobby();
-    hobby3.name = "Hobby3";
+    hobby3.name = "Golf";
 
-    this.hobbies.push(hobby1, hobby2, hobby3);
+    let hobby4: Hobby = new Hobby();
+    hobby4.name = "Tennis";
+
+    let hobby5: Hobby = new Hobby();
+    hobby5.name = "Archery";
+
+    this.hobbies.push(hobby1, hobby2, hobby3, hobby4, hobby5);
   }
 
 }

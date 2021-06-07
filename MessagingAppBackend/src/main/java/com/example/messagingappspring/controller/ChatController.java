@@ -72,13 +72,12 @@ public class ChatController {
     }
     @CrossOrigin
     @RequestMapping("/addMessage")
-    public void sendMessage(@RequestParam String chatName, @RequestParam String messageContent, @RequestParam String messageSender){
+    public void sendMessage(@RequestParam String chatId, @RequestParam String messageContent, @RequestParam String messageSender){
         try {
             databaseConnection.statement.executeUpdate(
                     "INSERT INTO message(chat_id, content, sender_id) VALUES(" +
-                    " (select chat_id from chat where chat_name = " + "'" + chatName + "'"  + "), " +
-                      "'" + messageContent + "'," +
-                    " (select user_id from user_info where user_id = " + messageSender + "))");
+                    "\"" + chatId + "\", " +
+                      "\"" + messageContent + "\", " + "\""+ messageSender+"\")");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

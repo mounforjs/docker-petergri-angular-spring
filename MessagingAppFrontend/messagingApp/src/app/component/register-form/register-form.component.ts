@@ -18,9 +18,9 @@ export class RegisterFormComponent implements OnInit {
   }
 
   onSubmit(form: any) {
-    if ((form.password === form.confirmPassword)) {
+    if (form.password != '' && form.password === form.confirmPassword) {
       let user: User = new User();
-      console.log(form)
+      // console.log(form)
       user.userName = form.userName;
       user.userPassword = form.password;
       SessionService.setCurrentUser(user);

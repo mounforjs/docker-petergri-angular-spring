@@ -43,14 +43,7 @@ export class ChatService {
   }
 
   sendMessage(message: MessageDTO, chat: ChatDTO): Observable<MessageDTO[]> {
-    console.log(chat)
-    let params = new HttpParams();
-    if (chat.chatName != null) {
-      params = params.append('chatName', chat.chatName);
-    }
-    params = params.append('messageContent', message.content);
-    params = params.append('messageSender', message.senderId);
-    return this.http.post<MessageDTO[]>(this.addMessageUrl +"?chatName=" + chat.chatName + "&messageContent=" + message.content + "&messageSender=" + message.senderId , {});
+    return this.http.post<MessageDTO[]>(this.addMessageUrl +"?chatId=" + chat.chatId + "&messageContent=" + message.content + "&messageSender=" + message.senderId , {});
   }
 
 }
