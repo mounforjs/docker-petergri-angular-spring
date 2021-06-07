@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {UserService} from "../../service/UserService";
 import {User} from "../../model/User";
+import {SessionService} from "../../service/SessionService";
 
 @Component({
   selector: 'app-login-page',
@@ -14,7 +15,9 @@ export class LoginPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    if(SessionService.getCurrentUser() === undefined) {
+      this.router.navigate(['/login']);
+    }
   }
 
   onSubmit(form: any) {
@@ -23,14 +26,12 @@ export class LoginPageComponent implements OnInit {
     user.userPassword = form.password;
     this.userService.getUser(user).subscribe(foundUser => {
       if(foundUser != null){
+        SessionService.setCurrentUser(foundUser);
         this.router.navigate(['/chatMenu']);
       } else {
         alert("User not found!");
       }
     });
-
-
-
   }
 
 

@@ -3,6 +3,9 @@ import {User} from "../../model/User";
 import {UserService} from "../../service/UserService";
 import {ChatService} from "../../service/ChatService";
 import {ChatDTO} from "../../model/ChatDTO";
+import {SessionService} from "../../service/SessionService";
+import {Admin} from "../../model/Admin";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'new-chat-room',
@@ -13,9 +16,12 @@ export class NewChatRoomComponent implements OnInit {
 
   users:User[] = [];
   usersForNewChatRoom:User[] = []
-  constructor(private userService: UserService, private chatService:ChatService) { }
+  constructor(private router: Router, private userService: UserService, private chatService:ChatService) { }
 
   ngOnInit(): void {
+    if(SessionService.getCurrentUser() === undefined) {
+      this.router.navigate(['/login']);
+    }
     this.userService.getUsers().subscribe(users => {
       this.users = users;
     });
@@ -36,9 +42,16 @@ export class NewChatRoomComponent implements OnInit {
     let chat:ChatDTO = new ChatDTO();
     chat.chatName = form.chatName;
     chat.chatDescription = form.chatDescription;
-    chat.creatorId = "1";
-    this.chatService.addNewChat(chat).subscribe(user => {
-      console.log("Chat added")
-    });
+    chat.creatorId = SessionService.getCurrentUser().userId;
+    console.log("CreateNewChatRoom debug")
+    console.log(SessionService.getCurrentUser() instanceof Admin)
+    if(SessionService.getCurrentUser() instanceof Admin) {
+      this.chatService.addNewChat(chat).subscribe(user => {
+        console.log("Chat added")
+      });
+    }
+    else {
+      console.log("User is not an admin")
+    }
   }
 }

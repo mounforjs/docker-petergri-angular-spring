@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../service/UserService";
 import {User} from "../../model/User";
 import {Router} from "@angular/router";
+import {SessionService} from "../../service/SessionService";
 
 @Component({
   selector: 'register-form',
@@ -22,6 +23,7 @@ export class RegisterFormComponent implements OnInit {
       console.log(form)
       user.userName = form.userName;
       user.userPassword = form.password;
+      SessionService.setCurrentUser(user);
       this.userService.addUser(user).subscribe(user => {
         this.router.navigate(['/chatMenu']);
       });
@@ -32,6 +34,7 @@ export class RegisterFormComponent implements OnInit {
 
   usernameCheck(userName: string) {
     //check if user already exist
+
     return false;
   }
 

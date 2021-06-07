@@ -1,9 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Chat} from "../../model/Chat";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ChatDTO} from "../../model/ChatDTO";
 import {ChatService} from "../../service/ChatService";
 import {MessageDTO} from "../../model/MessageDTO";
+import {SessionService} from "../../service/SessionService";
 
 @Component({
   selector: 'chat',
@@ -16,11 +17,14 @@ export class ChatRoomComponent implements OnInit {
   chat: ChatDTO = new ChatDTO;
   messages:MessageDTO[] = [];
 
-  constructor(private route: ActivatedRoute, private chatService: ChatService) {
+  constructor(private router: Router, private route: ActivatedRoute, private chatService: ChatService) {
 
   }
 
   ngOnInit(): void {
+    if(SessionService.getCurrentUser() === undefined) {
+      this.router.navigate(['/login']);
+    }
     this.route.paramMap.subscribe(params => {
       this.chat.chatName = params.get('chatName');
       this.chat.chatId = params.get('chatId');
@@ -35,7 +39,7 @@ export class ChatRoomComponent implements OnInit {
   sendMessage(messageBox: any) {
     let message = new MessageDTO();
     message.content = messageBox.value;
-    message.senderId = "1";
+    message.senderId = SessionService.getCurrentUser().userId;
     message.chatId = this.chat.chatId;
     this.chatService.sendMessage(message, this.chat).subscribe(messages => {
       this.messages = messages;

@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {Message} from "../../model/Message";
 import {ChatService} from "../../service/ChatService";
 import {ChatDTO} from "../../model/ChatDTO";
+import {SessionService} from "../../service/SessionService";
 
 @Component({
   selector: 'chat-menu',
@@ -17,6 +18,9 @@ export class ChatMenuComponent implements OnInit {
   constructor(private router:Router, private chatService:ChatService) { }
 
   ngOnInit(): void {
+    if(SessionService.getCurrentUser() === undefined) {
+      this.router.navigate(['/login']);
+    }
     this.chatService.getChats().subscribe(chats => {
       this.chats = chats;
     });

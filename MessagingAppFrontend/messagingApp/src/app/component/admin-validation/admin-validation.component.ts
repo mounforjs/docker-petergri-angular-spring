@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {SessionService} from "../../service/SessionService";
+import {Admin} from "../../model/Admin";
+import {User} from "../../model/User";
+import {UserService} from "../../service/UserService";
+import {AdminService} from "../../service/AdminService";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin-validation',
@@ -7,12 +13,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminValidationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private adminService: AdminService) { }
 
   ngOnInit(): void {
+    if(SessionService.getCurrentUser() === undefined) {
+      this.router.navigate(['/login']);
+    }
   }
 
   onSubmit(form: any) {
-    console.log(form)
+    let admin = new Admin();
+    admin.userBirthdate = form.birthdate;
+    admin.userEmail = form.email;
+    let user = SessionService.getCurrentUser();
+    admin.userName = user.userName;
+    admin.userPassword = user.userPassword;
+    admin.userId = user.userId;
+
+    SessionService.setCurrentUser(admin);
+    this.adminService.addAdmin(admin).subscribe(subAdmin => {
+      this.router.navigate(['/chatMenu']);
+    });
   }
 }
