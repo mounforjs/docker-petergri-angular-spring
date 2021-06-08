@@ -3,6 +3,7 @@ import {UserService} from "../../service/UserService";
 import {User} from "../../model/User";
 import {Router} from "@angular/router";
 import {SessionService} from "../../service/SessionService";
+import {AdminService} from "../../service/AdminService";
 
 @Component({
   selector: 'register-form',
@@ -11,7 +12,7 @@ import {SessionService} from "../../service/SessionService";
 })
 export class RegisterFormComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: Router) {
+  constructor(private userService: UserService, private router: Router, private adminService: AdminService) {
   }
 
   ngOnInit(): void {
@@ -23,9 +24,14 @@ export class RegisterFormComponent implements OnInit {
       // console.log(form)
       user.userName = form.userName;
       user.userPassword = form.password;
-      SessionService.setCurrentUser(user);
       this.userService.addUser(user).subscribe(user => {
-        this.router.navigate(['/chatMenu']);
+        if(user != null){
+          SessionService.setCurrentUser(user);
+          user.userId = user.userId;
+          this.router.navigate(['/chatMenu']);
+        } else {
+          alert("User not found!");
+        }
       });
     } else {
       console.log("Error")

@@ -40,6 +40,7 @@ CREATE TABLE chat (
   chat_name VARCHAR(30) NOT NULL,
   creator_id INT NOT NULL,
   
+  UNIQUE(creator_id, chat_name),
   PRIMARY KEY (chat_id),
   FOREIGN KEY (creator_id)
     REFERENCES admin_info(user_id)

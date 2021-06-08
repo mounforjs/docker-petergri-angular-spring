@@ -14,3 +14,6 @@ SELECT * FROM is_member;
 SELECT * FROM (chat NATURAL JOIN is_member) JOIN user_info ON member_id = user_info.user_id;
 
 SELECT * FROM message;
+select * from is_member where chat_id = 4;
+select * from is_member where chat_id=2;
+select * from is_member where chat_id=1;

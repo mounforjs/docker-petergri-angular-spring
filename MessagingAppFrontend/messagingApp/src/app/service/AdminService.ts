@@ -19,6 +19,7 @@ export class AdminService {
   // getAdminsUrl: string = 'http://localhost:8080/getAdmins';
   getAdminUrl: string = 'http://localhost:8080/getAdmin';
   addAdminUrl: string = 'http://localhost:8080/addAdmin';
+  getAdminForLoginUrl: string = 'http://localhost:8080/getAdminForLogin';
   // removeAllAdminUrl: string = 'http://localhost:8080/removeAllAdmin';
   // removeAdminUrl: string = 'http://localhost:8080/removeAdmin';
 
@@ -31,5 +32,9 @@ export class AdminService {
 
   addAdmin(admin: Admin): Observable<User> {
     return this.http.post<Admin>(this.addAdminUrl, admin, httpOptions);
+  }
+
+  getAdminForLogin(user: User) {
+    return this.http.post<User>(this.getAdminForLoginUrl, user, httpOptions);
   }
 }

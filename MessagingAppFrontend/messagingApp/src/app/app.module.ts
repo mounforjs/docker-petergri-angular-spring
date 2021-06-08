@@ -15,6 +15,7 @@ import { MainManuComponent } from './component/main-manu/main-manu.component';
 import { FormsModule }   from '@angular/forms';
 import { UserComponent } from './component/user/user.component';
 import {HttpClientModule} from "@angular/common/http";
+import { AddFriendComponent } from './add-friend/add-friend.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {HttpClientModule} from "@angular/common/http";
     LoginPageComponent,
     AdminValidationComponent,
     MainManuComponent,
-    UserComponent
+    UserComponent,
+    AddFriendComponent
   ],
   imports: [
     BrowserModule,

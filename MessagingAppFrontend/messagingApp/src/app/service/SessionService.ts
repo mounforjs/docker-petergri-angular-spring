@@ -6,7 +6,16 @@ import {User} from "../model/User";
 })
 export class SessionService {
 
+  static get isAdmin(): boolean {
+    return this._isAdmin;
+  }
+
+  static set isAdmin(value: boolean) {
+    this._isAdmin = value;
+  }
+
   static currentUser: User | undefined;
+  private static _isAdmin: boolean = false;
 
   constructor() {
   }

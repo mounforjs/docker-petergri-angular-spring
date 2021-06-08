@@ -30,7 +30,7 @@ export class AdminValidationComponent implements OnInit {
     admin.userPassword = user.userPassword;
     admin.userId = user.userId;
 
-    SessionService.setCurrentUser(admin);
+    SessionService.isAdmin = true;
     this.adminService.addAdmin(admin).subscribe(subAdmin => {
       this.router.navigate(['/chatMenu']);
     });

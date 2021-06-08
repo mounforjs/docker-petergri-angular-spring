@@ -37,7 +37,6 @@ export class UserService {
   }
 
   removeAllUser() {
-
     return this.http.get(this.removeAllUserUrl);
   }
 

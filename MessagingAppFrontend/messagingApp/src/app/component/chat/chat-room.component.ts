@@ -13,18 +13,22 @@ import {SessionService} from "../../service/SessionService";
 })
 export class ChatRoomComponent implements OnInit {
 
+  memberIds: String[] | undefined;
+
   @Input()
   chat: ChatDTO = new ChatDTO;
   messages:MessageDTO[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute, private chatService: ChatService) {
-
   }
 
-  ngOnInit(): void {
-    if(SessionService.getCurrentUser() === undefined) {
+  async ngOnInit(): Promise<void> {
+
+    if (SessionService.getCurrentUser() === undefined) {
       this.router.navigate(['/login']);
+      return;
     }
+
     this.route.paramMap.subscribe(params => {
       this.chat.chatName = params.get('chatName');
       this.chat.chatId = params.get('chatId');
@@ -34,15 +38,30 @@ export class ChatRoomComponent implements OnInit {
     this.chatService.getMessages(this.chat.chatId).subscribe(messages => {
       this.messages = messages;
     });
+
+    this.chatService.getMembers(this.chat.chatId).subscribe(str => {
+      this.memberIds = str;
+    });
+
   }
 
   sendMessage(messageBox: any) {
     let message = new MessageDTO();
     message.content = messageBox.value;
     message.senderId = SessionService.getCurrentUser().userId;
+    console.log("Sender is: " + message.senderId)
     message.chatId = this.chat.chatId;
-    this.chatService.sendMessage(message, this.chat).subscribe(messages => {
-      this.messages = messages;
-    });
+    console.log(this.memberIds);
+    let isMember = !!this.memberIds?.some(i => (i === ""+message.senderId));
+    if(isMember) {
+      this.chatService.addMessage(message);
+      this.messages.push(message);
+    }
+    else {
+      console.log(message.chatId);
+      console.log(message.senderId);
+      console.log("User is not a member of this chat!");
+    }
+    console.log("isMember= " + isMember)
   }
 }

@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {UserService} from "../../service/UserService";
 import {User} from "../../model/User";
 import {SessionService} from "../../service/SessionService";
+import {AdminService} from "../../service/AdminService";
 
 @Component({
   selector: 'app-login-page',
@@ -11,7 +12,8 @@ import {SessionService} from "../../service/SessionService";
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor(private router: Router, private userService: UserService, private adminService: AdminService) {
+
   }
 
   ngOnInit(): void {
@@ -24,9 +26,17 @@ export class LoginPageComponent implements OnInit {
     let user: User = new User();
     user.userName = form.userName;
     user.userPassword = form.password;
+
     this.userService.getUser(user).subscribe(foundUser => {
       if(foundUser != null){
         SessionService.setCurrentUser(foundUser);
+        user.userId = foundUser.userId;
+        this.adminService.getAdminForLogin(user).subscribe(foundAdmin => {
+          if(foundAdmin != null) {
+            SessionService.isAdmin = true;
+            console.log("Admin is logged in");
+          }
+        })
         this.router.navigate(['/chatMenu']);
       } else {
         alert("User not found!");

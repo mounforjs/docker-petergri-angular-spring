@@ -28,6 +28,7 @@ export class NewChatRoomComponent implements OnInit {
   }
 
   addUserToNewChat(user: User) {
+    console.log("Clicked on a user")
     if(this.usersForNewChatRoom.includes(user)){
       const index = this.usersForNewChatRoom.indexOf(user, 0);
       if (index > -1) {
@@ -38,16 +39,21 @@ export class NewChatRoomComponent implements OnInit {
     }
   }
 
+  getMembers() {
+
+  }
+
   createNewChatRoom(form:any) {
     let chat:ChatDTO = new ChatDTO();
+    console.log(this.usersForNewChatRoom);
     chat.chatName = form.chatName;
     chat.chatDescription = form.chatDescription;
     chat.creatorId = SessionService.getCurrentUser().userId;
     console.log("CreateNewChatRoom debug")
-    console.log(SessionService.getCurrentUser() instanceof Admin)
-    if(SessionService.getCurrentUser() instanceof Admin) {
+    if(SessionService.isAdmin === true) {
+      console.log("creating a new chat room");
       this.chatService.addNewChat(chat).subscribe(user => {
-        this.router.navigate(['/chat-room']);
+        this.router.navigate(['chatMenu/', chat]);
       });
     }
     else {
