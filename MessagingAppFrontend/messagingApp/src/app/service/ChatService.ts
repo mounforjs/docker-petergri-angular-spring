@@ -48,8 +48,8 @@ export class ChatService {
     return this.http.post<ChatDTO>(this.addChatUrl, chat, httpOptions);
   }
 
-  addMessage(message: MessageDTO): void {
-    this.http.post<MessageDTO>(this.addMessageUrl, message, httpOptions);
+  addMessage(message: MessageDTO): Observable<MessageDTO> {
+    return this.http.post<MessageDTO>(this.addMessageUrl, message, httpOptions);
   }
 
 }

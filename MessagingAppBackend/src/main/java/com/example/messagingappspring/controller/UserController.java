@@ -56,7 +56,7 @@ public class UserController {
     @RequestMapping("/addUser")
     public UserInfoDTO addUser(@RequestBody UserInfoDTO user) {
         try {
-            databaseConnection.statement.executeUpdate("INSERT INTO user_info (user_name, user_password) VALUES (" + "'" + user.getUserName() + "' , " + user.getUserPassword() + ")");
+            databaseConnection.statement.executeUpdate("INSERT INTO user_info (user_name, user_password) VALUES (" + "'" + user.getUserName() + "' , " +  "'" + user.getUserPassword() + "')");
             ResultSet resultSet = databaseConnection.statement.executeQuery("select * from user_info where user_name = '"
                     + user.getUserName() + "'");
             while (resultSet.next()) {

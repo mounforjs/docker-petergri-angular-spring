@@ -36,7 +36,7 @@ export class ChatRoomComponent implements OnInit {
       this.chat.creatorId = params.get('creatorId');
     })
     this.chatService.getMessages(this.chat.chatId).subscribe(messages => {
-      this.messages = messages;
+        this.messages = messages;
     });
 
     this.chatService.getMembers(this.chat.chatId).subscribe(str => {
@@ -54,7 +54,9 @@ export class ChatRoomComponent implements OnInit {
     console.log(this.memberIds);
     let isMember = !!this.memberIds?.some(i => (i === ""+message.senderId));
     if(isMember) {
-      this.chatService.addMessage(message);
+      this.chatService.addMessage(message).subscribe(message => {
+
+      });
       this.messages.push(message);
     }
     else {
