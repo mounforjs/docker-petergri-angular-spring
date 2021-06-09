@@ -23,7 +23,11 @@ export class NewChatRoomComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     this.userService.getUsers().subscribe(users => {
-      this.users = users;
+      for(let user in users) {
+        if(SessionService.getCurrentUser().userId != users[user].userId) {
+          this.users.push(users[user]);
+        }
+      }
     });
   }
 
@@ -52,9 +56,20 @@ export class NewChatRoomComponent implements OnInit {
     console.log("CreateNewChatRoom debug")
     if(SessionService.isAdmin === true) {
       console.log("creating a new chat room");
-      this.chatService.addNewChat(chat).subscribe(user => {
-        this.router.navigate(['chatMenu/', chat]);
+      this.chatService.addNewChat(chat).subscribe(foundChat => {
+        if(foundChat != null) {
+
+        }
       });
+      this.chatService.getChatUsingNameAndCreatorId(chat).subscribe(foundChat=>{
+        if(foundChat!=null) {
+          this.chatService.addMemberToChat(foundChat, foundChat.creatorId).subscribe();
+          for (let member in this.usersForNewChatRoom) {
+            this.chatService.addMemberToChat(foundChat, this.usersForNewChatRoom[member].userId).subscribe();
+          }
+        }
+      })
+      this.router.navigate(['chatMenu/']);
     }
     else {
       console.log("User is not an admin")

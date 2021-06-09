@@ -2,10 +2,7 @@ package com.example.messagingappspring.controller;
 
 import com.example.messagingappspring.DTO.AdminInfoDTO;
 import com.example.messagingappspring.database.DatabaseConnection;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 
@@ -15,10 +12,12 @@ public class FriendController {
 
     @CrossOrigin
     @RequestMapping("/addFriend")
-    public void addFriend(@RequestBody String userId, @RequestBody String friendId) {
+    public void addFriend(@RequestParam String userId, @RequestParam String friendId) {
         try {
             databaseConnection.statement.executeUpdate(String.format("INSERT INTO is_friend_of (user_id, friend_id) " +
                     "VALUES(%s, %s)", userId, friendId));
+            databaseConnection.statement.executeUpdate(String.format("INSERT INTO is_friend_of (user_id, friend_id) " +
+                    "VALUES(%s, %s)", friendId, userId));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

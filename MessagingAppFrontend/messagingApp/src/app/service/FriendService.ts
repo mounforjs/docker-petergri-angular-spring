@@ -21,6 +21,7 @@ export class FriendService {
   }
 
   addFriend(friendId:string): Observable<any> {
+    console.log(this.addFriendServiceUrl + "?userId=" + SessionService.getCurrentUser().userId + "&friendId=" + friendId);
     return this.http.post<any>(this.addFriendServiceUrl + "?userId=" + SessionService.getCurrentUser().userId + "&friendId=" + friendId, httpOptions);
   }
 }

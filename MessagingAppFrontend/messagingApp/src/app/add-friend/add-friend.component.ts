@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FriendService} from "../service/FriendService";
 import {UserService} from "../service/UserService";
-import {User} from "../model/User";
 
 @Component({
   selector: 'app-add-friend',
@@ -14,11 +13,11 @@ export class AddFriendComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onClickSubmit(result: { username: string; }) {
-    this.userService.getUserWithName(result.username).subscribe(userFound=>{
-      console.log(userFound);
+  onClickSubmit(result: { username: string }) {
+    console.log("Success");
+    this.userService.getViaName(result.username).subscribe(userFound=>{
       if(userFound != null) {
-        console.log(result);
+        console.log(userFound.userId)
         this.friendService.addFriend(userFound.userId).subscribe();
       }
     });

@@ -17,8 +17,8 @@ public class UserController {
     DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
 
     @CrossOrigin
-    @GetMapping("/getViaName")
-    public UserInfoDTO getViaName(@RequestParam String userName) {
+    @RequestMapping("/getViaName")
+    public UserInfoDTO getViaName(@RequestBody String userName) {
         try {
             ResultSet resultSet = databaseConnection.statement.executeQuery("select * from user_info where user_name = '"
                     + userName + "'");

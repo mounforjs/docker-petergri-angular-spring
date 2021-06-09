@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Chat} from "../model/Chat";
 import {ChatDTO} from "../model/ChatDTO";
 import {MessageDTO} from "../model/MessageDTO";
+import {SessionService} from "./SessionService";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,6 +24,8 @@ export class ChatService {
   addChatUrl: string = 'http://localhost:8080/addNewChat';
   addMessageUrl: string = 'http://localhost:8080/addMessage';
   getMemberIdsOfGivenChatUrl: string = 'http://localhost:8080/getMemberIdsOfGivenChat';
+  addMemberToChatUrl: string = 'http://localhost:8080/addMemberToChat';
+  getChatUsingNameAndCreatorIdUrl: string = 'http://localhost:8080/getChatUsingNameAndCreatorId';
 
   constructor(private http: HttpClient) {
   }
@@ -44,7 +47,6 @@ export class ChatService {
   }
 
   addNewChat(chat: ChatDTO): Observable<ChatDTO> {
-    console.log("Entered addNewChat");
     return this.http.post<ChatDTO>(this.addChatUrl, chat, httpOptions);
   }
 
@@ -52,4 +54,12 @@ export class ChatService {
     return this.http.post<MessageDTO>(this.addMessageUrl, message, httpOptions);
   }
 
+  addMemberToChat(chat: ChatDTO, memberId: string | null) {
+    console.log(this.addMemberToChatUrl+"?chatId="+chat.chatId+"&memberId="+memberId);
+    return this.http.post<ChatDTO>(this.addMemberToChatUrl+"?chatId="+chat.chatId+"&memberId="+memberId, httpOptions);
+  }
+
+  getChatUsingNameAndCreatorId(chat: ChatDTO) {
+    return this.http.post<ChatDTO>(this.getChatUsingNameAndCreatorIdUrl+"?chatName="+chat.chatName+"&creatorId="+chat.creatorId, httpOptions);
+  }
 }

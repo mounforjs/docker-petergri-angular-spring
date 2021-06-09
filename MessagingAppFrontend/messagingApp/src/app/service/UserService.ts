@@ -7,6 +7,7 @@ const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
     Authorization: 'my-auth-token'
+
   })
 };
 
@@ -44,7 +45,7 @@ export class UserService {
     return this.http.post<User>(this.removeUserUrl, user, httpOptions);
   }
 
-  getUserWithName(userName:string): Observable<User> {
-    return this.http.post<User>(this.getViaNameUrl + "?userName="+userName, httpOptions);
+  getViaName(userName:string): Observable<User> {
+    return this.http.post<User>(this.getViaNameUrl,userName, httpOptions);
   }
 }
