@@ -18,7 +18,6 @@ public class ChatController {
 
     DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
 
-
     @CrossOrigin
     @GetMapping("/getChats")
     public List<ChatDTO> getAllChats() {
@@ -39,7 +38,6 @@ public class ChatController {
     public List<String> getMemberIdsOfGivenChat(@RequestParam String chatId) {
         List<String> members = new ArrayList<>();
         try {
-            System.out.println("select * from is_member where chat_id=" + chatId);
             ResultSet resultSet = databaseConnection.statement.executeQuery("select * from is_member where chat_id=" + chatId);
             while (!resultSet.isClosed() && resultSet.next()) {
                 members.add(String.valueOf(resultSet.getInt(2)));
@@ -57,7 +55,6 @@ public class ChatController {
         try {
             String sql = "select * from message where chat_id=" + chatId;
             ResultSet resultSet = databaseConnection.statement.executeQuery(sql);
-            System.out.println(sql);
             while (!resultSet.isClosed() && resultSet.next()) {
                 MessageDTO msg = new MessageDTO(String.valueOf(resultSet.getInt(2)), resultSet.getString(4), String.valueOf(resultSet.getInt(5)));
                 messages.add(msg);
@@ -89,7 +86,6 @@ public class ChatController {
 
     public void addNewMemberToChat(ChatDTO chat){
         try {
-//            System.out.println("INSERT INTO is_member(chat_id, member_id) VALUES(" + chat.getChatId() + ", " + chat.getCreatorId() + ")");
             databaseConnection.statement.executeUpdate("INSERT INTO is_member(chat_id, member_id) VALUES(" + chat.getChatId() + ", " + chat.getCreatorId() + ")");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -98,11 +94,7 @@ public class ChatController {
     @CrossOrigin
     @RequestMapping("/addMessage")
     public void addMessage(@RequestBody MessageDTO message){
-        System.out.println("ENDPOINT IS WORKING");
         try {
-            System.out.println("INSERT INTO message(chat_id, content, sender_id) VALUES(" +
-                    message.getChatId() + ", " +
-                    "\"" + message.getContent() + "\", "+ message.getSenderId()+")");
             databaseConnection.statement.executeUpdate(
                     "INSERT INTO message(chat_id, content, sender_id) VALUES(" +
                             message.getChatId() + ", " +

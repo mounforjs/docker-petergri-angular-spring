@@ -14,7 +14,6 @@ import {SessionService} from "../../service/SessionService";
 export class ChatMenuComponent implements OnInit {
 
   chats:ChatDTO[] = []
-
   constructor(private router:Router, private chatService:ChatService) { }
 
   ngOnInit(): void {
@@ -36,5 +35,13 @@ export class ChatMenuComponent implements OnInit {
 
   validateAdmin() {
     this.router.navigate(['/adminValidation']);
+  }
+
+  addNewFriend() {
+    this.router.navigate(['/addFriend']);
+  }
+
+  getUserName() : string {
+    return SessionService.getCurrentUser().userName;
   }
 }

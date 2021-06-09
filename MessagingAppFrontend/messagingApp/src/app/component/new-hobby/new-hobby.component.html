@@ -1,11 +1,14 @@
-<p style="text-align:center; margin-top: 5%">Hobbies</p>
-
-<ul *ngFor="let hobby of hobbies" class="list-group">
-  <div id="song">
-    <div class="d-flex justify-content-center">
+<div class="column">
+  <p style="text-align:center; margin-top: 5%">Hobbies</p>
+  <div style="margin-top: 10%">
+    <ul *ngFor="let hobby of hobbies" class="list-group">
       <li class="list-group-item">
-        <div class="btn btn-primary" style="width: 300px">{{ hobby.name }}</div>
+        <app-hobby-comp [hobby]="hobby" (click)="tapOnHobby(hobby)"></app-hobby-comp>
       </li>
-    </div>
+    </ul>
   </div>
-</ul>
+  <div class="d-flex justify-content-center" style="margin-top: 10%">
+    <button class="btn btn-primary" (click)="addSelectedHobbies()">Create New Chat</button>
+  </div>
+</div>
+

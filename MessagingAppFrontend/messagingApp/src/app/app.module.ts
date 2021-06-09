@@ -16,6 +16,7 @@ import { FormsModule }   from '@angular/forms';
 import { UserComponent } from './component/user/user.component';
 import {HttpClientModule} from "@angular/common/http";
 import { AddFriendComponent } from './add-friend/add-friend.component';
+import { HobbyComponent } from './component/hobby/hobby.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AddFriendComponent } from './add-friend/add-friend.component';
     AdminValidationComponent,
     MainManuComponent,
     UserComponent,
-    AddFriendComponent
+    AddFriendComponent,
+    HobbyComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import { AddFriendComponent } from './add-friend/add-friend.component';
       {path: 'chatMenu', component: ChatMenuComponent},
       {path: 'createChatRoom', component: NewChatRoomComponent},
       {path: 'chooseHobby', component: NewHobbyComponent},
-      {path: 'login', component: LoginPageComponent}
+      {path: 'login', component: LoginPageComponent},
+      {path: 'addFriend', component: AddFriendComponent}
     ])
   ],
   providers: [],

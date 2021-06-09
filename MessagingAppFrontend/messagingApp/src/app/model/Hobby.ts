@@ -1,3 +1,5 @@
 export class Hobby {
-  name: string = "";
+  hobbyId: string = "";
+  hobbyName: string = "";
+  hobbyDescription: string = "";
 }

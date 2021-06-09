@@ -17,6 +17,22 @@ public class UserController {
     DatabaseConnection databaseConnection = DatabaseConnection.getInstance();
 
     @CrossOrigin
+    @GetMapping("/getViaName")
+    public UserInfoDTO getViaName(@RequestParam String userName) {
+        try {
+            ResultSet resultSet = databaseConnection.statement.executeQuery("select * from user_info where user_name = '"
+                    + userName + "'");
+            while (resultSet.next()) {
+                return new UserInfoDTO(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+
+    @CrossOrigin
     @GetMapping("/getUsers")
     public List<UserInfoDTO> getAllUsers() {
         List<UserInfoDTO> users = new ArrayList<>();

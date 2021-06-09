@@ -37,8 +37,6 @@ public class AdminController {
     @RequestMapping("/addAdmin")
     public void addAdmin(@RequestBody AdminInfoDTO admin) {
         try {
-//            System.out.println(String.format("INSERT INTO admin_info (user_id, birthdate, email) " +
-//                    "VALUES('%s', '%s', '%s')", admin.getUserId(), admin.getUserBirthdate(), admin.getUserEmail()));
             databaseConnection.statement.executeUpdate(String.format("INSERT INTO admin_info (user_id, birthdate, email) " +
                     "VALUES('%s', '%s', '%s')", admin.getUserId(), admin.getUserBirthdate(), admin.getUserEmail()));
         } catch (SQLException throwables) {

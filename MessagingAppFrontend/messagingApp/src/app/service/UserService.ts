@@ -20,7 +20,7 @@ export class UserService {
   addUserUrl: string = 'http://localhost:8080/addUser';
   removeAllUserUrl: string = 'http://localhost:8080/removeAllUser';
   removeUserUrl: string = 'http://localhost:8080/removeUser';
-
+  getViaNameUrl: string = 'http://localhost:8080/getViaName';
   constructor(private http: HttpClient) {
   }
 
@@ -44,4 +44,7 @@ export class UserService {
     return this.http.post<User>(this.removeUserUrl, user, httpOptions);
   }
 
+  getUserWithName(userName:string): Observable<User> {
+    return this.http.post<User>(this.getViaNameUrl + "?userName="+userName, httpOptions);
+  }
 }

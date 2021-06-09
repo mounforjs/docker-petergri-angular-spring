@@ -1,4 +1,4 @@
-<p style="text-align:center; margin-top: 5%">Chats</p>
+<p style="text-align:center; margin-top: 5%">Welcome, {{getUserName()}}</p>
 
 <ul *ngFor="let chat of chats" class="list-group">
   <div class="d-flex justify-content-center">
@@ -19,5 +19,8 @@
   <button class="btn btn-primary" (click)="createNewChat()">
     Create new Chatroom
   </button>
+    <button class="btn btn-primary" (click)="addNewFriend()">
+      Add a friend
+    </button>
 </div>
 </div>
