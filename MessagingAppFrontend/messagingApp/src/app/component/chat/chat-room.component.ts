@@ -66,4 +66,8 @@ export class ChatRoomComponent implements OnInit {
     }
     console.log("isMember= " + isMember)
   }
+
+  getCurrentUserId() {
+    return SessionService.getCurrentUser().userId;
+  }
 }

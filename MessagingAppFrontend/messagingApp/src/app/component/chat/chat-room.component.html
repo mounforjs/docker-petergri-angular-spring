@@ -4,11 +4,14 @@
 
 
 <ul *ngFor="let message of messages" class="list-group">
-  <div class="d-flex justify-content-center">
-    <li class="list-group-item">
-      <p> {{ message.content }}</p>
-    </li>
-  </div>
+  <li class="list-group-item">
+    <div *ngIf="message.senderId == getCurrentUserId(); else elseBlock">
+      <p style="text-align: right"> {{ message.content }}</p>
+    </div>
+    <ng-template #elseBlock>
+      <p style="text-align: left"> {{ message.content }}</p>
+    </ng-template>
+  </li>
 </ul>
 
 
