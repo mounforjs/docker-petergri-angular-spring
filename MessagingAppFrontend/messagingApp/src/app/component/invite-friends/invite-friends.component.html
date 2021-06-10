@@ -1,0 +1,13 @@
+<p style="text-align:center; margin-top: 5%">Select Users</p>
+<div class="column">
+  <div style="margin-top: 10%">
+    <ul *ngFor="let friend of friends" class="list-group">
+      <li class="list-group-item">
+        <app-user [user]="friend" (click)="selectInvitedFriend(friend)"></app-user>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="d-flex justify-content-center" style="margin-top: 10%">
+  <button class="btn btn-primary" (click)="inviteSelected()">Invite selected users</button>
+</div>

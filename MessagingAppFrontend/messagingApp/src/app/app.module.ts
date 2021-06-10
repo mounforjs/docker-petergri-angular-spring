@@ -17,6 +17,7 @@ import { UserComponent } from './component/user/user.component';
 import {HttpClientModule} from "@angular/common/http";
 import { AddFriendComponent } from './add-friend/add-friend.component';
 import { HobbyComponent } from './component/hobby/hobby.component';
+import { InviteFriendsComponent } from './component/invite-friends/invite-friends.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HobbyComponent } from './component/hobby/hobby.component';
     MainManuComponent,
     UserComponent,
     AddFriendComponent,
-    HobbyComponent
+    HobbyComponent,
+    InviteFriendsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { HobbyComponent } from './component/hobby/hobby.component';
       {path: 'createChatRoom', component: NewChatRoomComponent},
       {path: 'chooseHobby', component: NewHobbyComponent},
       {path: 'login', component: LoginPageComponent},
-      {path: 'addFriend', component: AddFriendComponent}
+      {path: 'addFriend', component: AddFriendComponent},
+      {path: 'inviteFriends/:chatId', component: InviteFriendsComponent}
     ])
   ],
   providers: [],

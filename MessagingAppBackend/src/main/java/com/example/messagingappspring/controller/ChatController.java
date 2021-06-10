@@ -22,6 +22,7 @@ public class ChatController {
     @RequestMapping("/addMemberToChat")
     public void addMemberToChat(@RequestParam String chatId, @RequestParam String memberId) {
         try {
+            System.out.println("INSERT INTO is_member(chat_id, member_id) VALUES(" + chatId + ", " + memberId + ")");
             databaseConnection.createStatement().executeUpdate("INSERT INTO is_member(chat_id, member_id) VALUES(" + chatId + ", " + memberId + ")");
         } catch (SQLException throwables) {
             throwables.printStackTrace();

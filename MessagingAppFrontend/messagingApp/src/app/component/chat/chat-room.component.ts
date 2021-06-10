@@ -66,4 +66,8 @@ export class ChatRoomComponent implements OnInit {
       this.messages = messages;
     });
   }
+
+  routeInviteFriends(chat: ChatDTO) {
+    this.router.navigate(['/inviteFriends/'+chat.chatId]);
+  }
 }

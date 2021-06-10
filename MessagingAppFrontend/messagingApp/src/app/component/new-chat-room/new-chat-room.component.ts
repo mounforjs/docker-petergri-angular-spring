@@ -58,9 +58,9 @@ export class NewChatRoomComponent implements OnInit {
       });
       this.chatService.getChatUsingNameAndCreatorId(chat).then(foundChat=>{
         if(foundChat!=null) {
-          this.chatService.addMemberToChat(foundChat, foundChat.creatorId).then();
+          this.chatService.addMemberToChat(foundChat.chatId, foundChat.creatorId).then();
           for (let member in this.usersForNewChatRoom) {
-            this.chatService.addMemberToChat(foundChat, this.usersForNewChatRoom[member].userId).then();
+            this.chatService.addMemberToChat(foundChat.chatId, this.usersForNewChatRoom[member].userId).then();
           }
         }
       })

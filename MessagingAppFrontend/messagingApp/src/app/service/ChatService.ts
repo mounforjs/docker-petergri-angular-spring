@@ -55,9 +55,8 @@ export class ChatService {
     return await this.http.post<MessageDTO>(this.addMessageUrl, message, httpOptions).toPromise();
   }
 
-  async addMemberToChat(chat: ChatDTO, memberId: string | null) {
-    console.log(this.addMemberToChatUrl+"?chatId="+chat.chatId+"&memberId="+memberId);
-    return await this.http.post<ChatDTO>(this.addMemberToChatUrl+"?chatId="+chat.chatId+"&memberId="+memberId, httpOptions).toPromise();
+  async addMemberToChat(chatId: string | null, memberId: string | null) {
+    return await this.http.post<ChatDTO>(this.addMemberToChatUrl+"?chatId="+chatId+"&memberId="+memberId, httpOptions).toPromise();
   }
 
   async getChatUsingNameAndCreatorId(chat: ChatDTO) {
