@@ -14,11 +14,12 @@ export class AddFriendComponent implements OnInit {
   }
 
   onClickSubmit(result: { username: string }) {
-    console.log("Success");
-    this.userService.getViaName(result.username).subscribe(userFound=>{
+    this.userService.getViaName(result.username).then(userFound=>{
       if(userFound != null) {
-        console.log(userFound.userId)
         this.friendService.addFriend(userFound.userId).subscribe();
+      }
+      else {
+        alert("User with name " + result.username + " was not found!");
       }
     });
   }

@@ -23,7 +23,7 @@ public class HobbyController {
     public List<HobbyDTO> getHobbies() {
         List<HobbyDTO> hobbies = new ArrayList<>();
         try {
-            ResultSet resultSet = databaseConnection.statement.executeQuery("select * from hobby");
+            ResultSet resultSet = databaseConnection.createStatement().executeQuery("select * from hobby");
             while (resultSet.next()) {
                 hobbies.add(new HobbyDTO(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
             }

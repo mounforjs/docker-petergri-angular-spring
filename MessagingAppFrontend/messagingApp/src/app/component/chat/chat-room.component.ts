@@ -5,6 +5,7 @@ import {ChatDTO} from "../../model/ChatDTO";
 import {ChatService} from "../../service/ChatService";
 import {MessageDTO} from "../../model/MessageDTO";
 import {SessionService} from "../../service/SessionService";
+import {waitForAsync} from "@angular/core/testing";
 
 @Component({
   selector: 'chat',
@@ -12,8 +13,6 @@ import {SessionService} from "../../service/SessionService";
   styleUrls: ['./chat-room.component.css']
 })
 export class ChatRoomComponent implements OnInit {
-
-  memberIds: String[] | undefined;
 
   @Input()
   chat: ChatDTO = new ChatDTO;
@@ -35,39 +34,36 @@ export class ChatRoomComponent implements OnInit {
       this.chat.chatDescription = params.get('chatDescription');
       this.chat.creatorId = params.get('creatorId');
     })
-    this.chatService.getMessages(this.chat.chatId).subscribe(messages => {
+    this.chatService.getMessages(this.chat.chatId).then(messages => {
         this.messages = messages;
     });
-
-    this.chatService.getMembers(this.chat.chatId).subscribe(str => {
-      this.memberIds = str;
-    });
-
   }
 
   sendMessage(messageBox: any) {
     let message = new MessageDTO();
     message.content = messageBox.value;
     message.senderId = SessionService.getCurrentUser().userId;
-    console.log("Sender is: " + message.senderId)
     message.chatId = this.chat.chatId;
-    console.log(this.memberIds);
-    let isMember = !!this.memberIds?.some(i => (i === ""+message.senderId));
-    if(isMember) {
-      this.chatService.addMessage(message).subscribe(message => {
 
-      });
-      this.messages.push(message);
-    }
-    else {
-      console.log(message.chatId);
-      console.log(message.senderId);
-      console.log("User is not a member of this chat!");
-    }
-    console.log("isMember= " + isMember)
+    this.chatService.checkIfMember(this.chat, message.senderId).then(isMember =>{
+      if(isMember) {
+        this.chatService.addMessage(message).then(message => {
+          this.refreshMessages();
+        });
+      }
+      else {
+        alert("You are not a member of this chat");
+      }
+    });
   }
 
   getCurrentUserId() {
     return SessionService.getCurrentUser().userId;
+  }
+
+  refreshMessages() {
+    this.chatService.getMessages(this.chat.chatId).then(messages => {
+      this.messages = messages;
+    });
   }
 }

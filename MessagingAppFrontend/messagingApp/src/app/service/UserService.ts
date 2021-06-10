@@ -29,8 +29,8 @@ export class UserService {
     return this.http.get<User[]>(this.getUsersUrl);
   }
 
-  getUser(user: User): Observable<User> {
-    return this.http.post<User>(this.getUserUrl, user, httpOptions);
+  async getUser(user: User): Promise<User> {
+    return await this.http.post<User>(this.getUserUrl, user, httpOptions).toPromise();
   }
 
   addUser(user: User): Observable<User> {
@@ -45,7 +45,7 @@ export class UserService {
     return this.http.post<User>(this.removeUserUrl, user, httpOptions);
   }
 
-  getViaName(userName:string): Observable<User> {
-    return this.http.post<User>(this.getViaNameUrl,userName, httpOptions);
+  async getViaName(userName:string): Promise<User> {
+    return await this.http.post<User>(this.getViaNameUrl,userName, httpOptions).toPromise();
   }
 }

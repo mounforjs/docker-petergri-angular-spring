@@ -49,30 +49,25 @@ export class NewChatRoomComponent implements OnInit {
 
   createNewChatRoom(form:any) {
     let chat:ChatDTO = new ChatDTO();
-    console.log(this.usersForNewChatRoom);
     chat.chatName = form.chatName;
     chat.chatDescription = form.chatDescription;
     chat.creatorId = SessionService.getCurrentUser().userId;
-    console.log("CreateNewChatRoom debug")
     if(SessionService.isAdmin === true) {
-      console.log("creating a new chat room");
-      this.chatService.addNewChat(chat).subscribe(foundChat => {
-        if(foundChat != null) {
+      this.chatService.addNewChat(chat).then(foundChat => {
 
-        }
       });
-      this.chatService.getChatUsingNameAndCreatorId(chat).subscribe(foundChat=>{
+      this.chatService.getChatUsingNameAndCreatorId(chat).then(foundChat=>{
         if(foundChat!=null) {
-          this.chatService.addMemberToChat(foundChat, foundChat.creatorId).subscribe();
+          this.chatService.addMemberToChat(foundChat, foundChat.creatorId).then();
           for (let member in this.usersForNewChatRoom) {
-            this.chatService.addMemberToChat(foundChat, this.usersForNewChatRoom[member].userId).subscribe();
+            this.chatService.addMemberToChat(foundChat, this.usersForNewChatRoom[member].userId).then();
           }
         }
       })
-      this.router.navigate(['chatMenu/']);
     }
     else {
-      console.log("User is not an admin")
+      alert("Only admins can create chatrooms");
     }
+    this.router.navigate(['chatMenu/']);
   }
 }

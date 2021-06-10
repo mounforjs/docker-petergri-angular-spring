@@ -20,7 +20,7 @@ public class UserController {
     @RequestMapping("/getViaName")
     public UserInfoDTO getViaName(@RequestBody String userName) {
         try {
-            ResultSet resultSet = databaseConnection.statement.executeQuery("select * from user_info where user_name = '"
+            ResultSet resultSet = databaseConnection.createStatement().executeQuery("select * from user_info where user_name = '"
                     + userName + "'");
             while (resultSet.next()) {
                 return new UserInfoDTO(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3));
@@ -37,7 +37,7 @@ public class UserController {
     public List<UserInfoDTO> getAllUsers() {
         List<UserInfoDTO> users = new ArrayList<>();
         try {
-            ResultSet resultSet = databaseConnection.statement.executeQuery("select * from user_info");
+            ResultSet resultSet = databaseConnection.createStatement().executeQuery("select * from user_info");
             while (resultSet.next()) {
                 users.add(new UserInfoDTO(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3)));
             }
@@ -51,7 +51,7 @@ public class UserController {
     @RequestMapping("/getUser")
     public UserInfoDTO getUser(@RequestBody UserInfoDTO user) {
         try {
-            ResultSet resultSet = databaseConnection.statement.executeQuery("select * from user_info where user_name = '"
+            ResultSet resultSet = databaseConnection.createStatement().executeQuery("select * from user_info where user_name = '"
                     + user.getUserName() + "' and user_password = " + user.getUserPassword());
             while (resultSet.next()) {
                 return new UserInfoDTO(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3));
@@ -72,8 +72,8 @@ public class UserController {
     @RequestMapping("/addUser")
     public UserInfoDTO addUser(@RequestBody UserInfoDTO user) {
         try {
-            databaseConnection.statement.executeUpdate("INSERT INTO user_info (user_name, user_password) VALUES (" + "'" + user.getUserName() + "' , " +  "'" + user.getUserPassword() + "')");
-            ResultSet resultSet = databaseConnection.statement.executeQuery("select * from user_info where user_name = '"
+            databaseConnection.createStatement().executeUpdate("INSERT INTO user_info (user_name, user_password) VALUES (" + "'" + user.getUserName() + "' , " +  "'" + user.getUserPassword() + "')");
+            ResultSet resultSet = databaseConnection.createStatement().executeQuery("select * from user_info where user_name = '"
                     + user.getUserName() + "'");
             while (resultSet.next()) {
                 return new UserInfoDTO(resultSet.getInt(1), resultSet.getString(2),

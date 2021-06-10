@@ -28,5 +28,8 @@
     #messageBox="ngModel"
     required
     type="text">
-  <button type="button" class="btn btn-success" (click)="sendMessage(messageBox);">Send</button>
+  <div>
+    <button type="button" class="btn btn-success" style="alignment: right" (click)="sendMessage(messageBox);">Send</button>
+    <button type="button" class="btn btn-success" style="alignment: left" (click)="refreshMessages();">Refresh</button>
+  </div>
 </div>

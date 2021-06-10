@@ -22,10 +22,25 @@ public class ChatController {
     @RequestMapping("/addMemberToChat")
     public void addMemberToChat(@RequestParam String chatId, @RequestParam String memberId) {
         try {
-            databaseConnection.statement.executeUpdate("INSERT INTO is_member(chat_id, member_id) VALUES(" + chatId + ", " + memberId + ")");
+            databaseConnection.createStatement().executeUpdate("INSERT INTO is_member(chat_id, member_id) VALUES(" + chatId + ", " + memberId + ")");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    @CrossOrigin
+    @RequestMapping("/checkIfMember")
+    public boolean checkIfMember(@RequestParam String chatId, @RequestParam String memberId) {
+        try {
+
+            ResultSet resultSet = databaseConnection.createStatement().executeQuery("select * from is_member where member_id=" + memberId + " and chat_id="+chatId);
+            while (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 
     @CrossOrigin
@@ -33,7 +48,7 @@ public class ChatController {
     public List<ChatDTO> getAllChats() {
         List<ChatDTO> chats = new ArrayList<>();
         try {
-            ResultSet resultSet = databaseConnection.statement.executeQuery("select * from chat");
+            ResultSet resultSet = databaseConnection.createStatement().executeQuery("select * from chat");
             while (resultSet.next()) {
                 chats.add(new ChatDTO(String.valueOf(resultSet.getInt(1)), resultSet.getString(3), resultSet.getString(4), String.valueOf(resultSet.getInt(5))));
             }
@@ -48,7 +63,7 @@ public class ChatController {
     public List<String> getMemberIdsOfGivenChat(@RequestParam String chatId) {
         List<String> members = new ArrayList<>();
         try {
-            ResultSet resultSet = databaseConnection.statement.executeQuery("select * from is_member where chat_id=" + chatId);
+            ResultSet resultSet = databaseConnection.createStatement().executeQuery("select * from is_member where chat_id=" + chatId);
             while (!resultSet.isClosed() && resultSet.next()) {
                 members.add(String.valueOf(resultSet.getInt(2)));
             }
@@ -64,9 +79,9 @@ public class ChatController {
         List<MessageDTO> messages = new ArrayList<>();
         try {
             String sql = "select * from message where chat_id=" + chatId;
-            ResultSet resultSet = databaseConnection.statement.executeQuery(sql);
-            while (resultSet.next()) {
-                MessageDTO msg = new MessageDTO(String.valueOf(resultSet.getInt(2)), resultSet.getString(4), String.valueOf(resultSet.getInt(5)));
+            ResultSet rs = databaseConnection.createStatement().executeQuery(sql);
+            while (rs.next()) {
+                MessageDTO msg = new MessageDTO(String.valueOf(rs.getInt(2)), rs.getString(4), String.valueOf(rs.getInt(5)));
                 messages.add(msg);
             }
             return messages;
@@ -80,7 +95,7 @@ public class ChatController {
     @RequestMapping("/addNewChat")
     void addNewChat(@RequestBody ChatDTO chat) {
         try {
-            databaseConnection.statement.executeUpdate("INSERT INTO chat (chat_description, chat_name, creator_id) " +
+            databaseConnection.createStatement().executeUpdate("INSERT INTO chat (chat_description, chat_name, creator_id) " +
                     "VALUES (" + "'" + chat.getChatDescription() + "' , '" + chat.getChatName() + "', " + chat.getCreatorId() + ")");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -91,7 +106,7 @@ public class ChatController {
     @RequestMapping("/getChatUsingNameAndCreatorId")
     ChatDTO getChatUsingNameAndCreatorId(@RequestParam String chatName, @RequestParam String creatorId) {
         try {
-            ResultSet resultSet = databaseConnection.statement.executeQuery("SELECT * FROM chat WHERE chat_name=" + "'" + chatName + "' AND creator_id=" + creatorId);
+            ResultSet resultSet = databaseConnection.createStatement().executeQuery("SELECT * FROM chat WHERE chat_name=" + "'" + chatName + "' AND creator_id=" + creatorId);
 
             while (resultSet.next()) {
                 return new ChatDTO(String.valueOf(resultSet.getInt(1)), resultSet.getString(3), resultSet.getString(4), String.valueOf(resultSet.getInt(5)));
@@ -106,7 +121,7 @@ public class ChatController {
     @RequestMapping("/addMessage")
     public void addMessage(@RequestBody MessageDTO message){
         try {
-            databaseConnection.statement.executeUpdate(
+            databaseConnection.createStatement().executeUpdate(
                     "INSERT INTO message(chat_id, content, sender_id) VALUES(" +
                             message.getChatId() + ", " +
                       "\"" + message.getContent() + "\", "+ message.getSenderId()+")");

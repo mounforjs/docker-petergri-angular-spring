@@ -21,7 +21,7 @@ public class AdminController {
     @RequestMapping("/getAdmin")
     public UserInfoDTO getAdmin(@RequestBody AdminInfoDTO admin) {
         try {
-            ResultSet resultSet = databaseConnection.statement.executeQuery("select * from admin_info where user_id = '"
+            ResultSet resultSet = databaseConnection.createStatement().executeQuery("select * from admin_info where user_id = '"
                     + admin.getUserId() + "'");
             while (resultSet.next()) {
                 return new AdminInfoDTO(resultSet.getInt(1), resultSet.getString(2),
@@ -37,7 +37,7 @@ public class AdminController {
     @RequestMapping("/addAdmin")
     public void addAdmin(@RequestBody AdminInfoDTO admin) {
         try {
-            databaseConnection.statement.executeUpdate(String.format("INSERT INTO admin_info (user_id, birthdate, email) " +
+            databaseConnection.createStatement().executeUpdate(String.format("INSERT INTO admin_info (user_id, birthdate, email) " +
                     "VALUES('%s', '%s', '%s')", admin.getUserId(), admin.getUserBirthdate(), admin.getUserEmail()));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -48,7 +48,7 @@ public class AdminController {
     @RequestMapping("/getAdminForLogin")
     public UserInfoDTO getAdminForLogin(@RequestBody UserInfoDTO user) {
         try {
-            ResultSet resultSet = databaseConnection.statement.executeQuery("select * from admin_info where user_id = "
+            ResultSet resultSet = databaseConnection.createStatement().executeQuery("select * from admin_info where user_id = "
                     + user.getUserId());
             while (resultSet.next()) {
                 return new UserInfoDTO(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3));

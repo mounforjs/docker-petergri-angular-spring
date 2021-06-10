@@ -34,7 +34,7 @@ export class AdminService {
     return this.http.post<Admin>(this.addAdminUrl, admin, httpOptions);
   }
 
-  getAdminForLogin(user: User) {
-    return this.http.post<User>(this.getAdminForLoginUrl, user, httpOptions);
+  async getAdminForLogin(user: User) {
+    return await this.http.post<User>(this.getAdminForLoginUrl, user, httpOptions).toPromise();
   }
 }

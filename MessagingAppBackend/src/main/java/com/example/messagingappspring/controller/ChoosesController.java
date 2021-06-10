@@ -16,7 +16,7 @@ public class ChoosesController {
     @RequestMapping("/addChoice")
     public void addChoice(@RequestParam String hobbyId, @RequestParam String userId) {
         try {
-            databaseConnection.statement.executeUpdate(String.format("INSERT INTO chooses (hobby_id, user_id) " +
+            databaseConnection.createStatement().executeUpdate(String.format("INSERT INTO chooses (hobby_id, user_id) " +
                     "VALUES(%s, '%s')", hobbyId, userId));
         } catch (SQLException throwables) {
             throwables.printStackTrace();

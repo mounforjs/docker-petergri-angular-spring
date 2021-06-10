@@ -30,11 +30,11 @@ export class RegisterFormComponent implements OnInit {
           user.userId = user.userId;
           this.router.navigate(['/chatMenu']);
         } else {
-          alert("User not found!");
+          alert("User already exists");
         }
       });
     } else {
-      console.log("Error")
+      alert("Entered passwords do not match. Please try again.")
     }
   }
 

@@ -20,7 +20,7 @@ export class ChatMenuComponent implements OnInit {
     if(SessionService.getCurrentUser() === undefined) {
       this.router.navigate(['/login']);
     }
-    this.chatService.getChats().subscribe(chats => {
+    this.chatService.getChats().then(chats => {
       this.chats = chats;
     });
   }

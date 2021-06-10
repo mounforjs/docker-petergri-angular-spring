@@ -26,6 +26,7 @@ export class ChatService {
   getMemberIdsOfGivenChatUrl: string = 'http://localhost:8080/getMemberIdsOfGivenChat';
   addMemberToChatUrl: string = 'http://localhost:8080/addMemberToChat';
   getChatUsingNameAndCreatorIdUrl: string = 'http://localhost:8080/getChatUsingNameAndCreatorId';
+  checkIfMemberUrl: string = 'http://localhost:8080/checkIfMember';
 
   constructor(private http: HttpClient) {
   }
@@ -34,32 +35,36 @@ export class ChatService {
       return this.http.get<ChatDTO>(this.getChatUrl,{params: {chatId: chatRoom.chatId}});
     }*/
 
-  getMembers(chatId: string | null): Observable<String[]> {
-    return this.http.get<String[]>(this.getMemberIdsOfGivenChatUrl + "?chatId=" + chatId);
+  async getMembers(chatId: string | null): Promise<String[]> {
+    return await this.http.get<String[]>(this.getMemberIdsOfGivenChatUrl + "?chatId=" + chatId).toPromise();
   }
 
-  getChats(): Observable<ChatDTO[]> {
-    return this.http.get<ChatDTO[]>(this.getChatsUrl);
+  async getChats(): Promise<ChatDTO[]> {
+    return await this.http.get<ChatDTO[]>(this.getChatsUrl).toPromise();
   }
 
-  getMessages(chatId: string | null): Observable<MessageDTO[]> {
-    return this.http.get<MessageDTO[]>(this.getMessagesUrl + "?chatId=" + chatId);
+  async getMessages(chatId: string | null): Promise<MessageDTO[]> {
+    return await this.http.get<MessageDTO[]>(this.getMessagesUrl + "?chatId=" + chatId).toPromise();
   }
 
-  addNewChat(chat: ChatDTO): Observable<ChatDTO> {
-    return this.http.post<ChatDTO>(this.addChatUrl, chat, httpOptions);
+  async addNewChat(chat: ChatDTO): Promise<ChatDTO> {
+    return await this.http.post<ChatDTO>(this.addChatUrl, chat, httpOptions).toPromise();
   }
 
-  addMessage(message: MessageDTO): Observable<MessageDTO> {
-    return this.http.post<MessageDTO>(this.addMessageUrl, message, httpOptions);
+  async addMessage(message: MessageDTO): Promise<MessageDTO> {
+    return await this.http.post<MessageDTO>(this.addMessageUrl, message, httpOptions).toPromise();
   }
 
-  addMemberToChat(chat: ChatDTO, memberId: string | null) {
+  async addMemberToChat(chat: ChatDTO, memberId: string | null) {
     console.log(this.addMemberToChatUrl+"?chatId="+chat.chatId+"&memberId="+memberId);
-    return this.http.post<ChatDTO>(this.addMemberToChatUrl+"?chatId="+chat.chatId+"&memberId="+memberId, httpOptions);
+    return await this.http.post<ChatDTO>(this.addMemberToChatUrl+"?chatId="+chat.chatId+"&memberId="+memberId, httpOptions).toPromise();
   }
 
-  getChatUsingNameAndCreatorId(chat: ChatDTO) {
-    return this.http.post<ChatDTO>(this.getChatUsingNameAndCreatorIdUrl+"?chatName="+chat.chatName+"&creatorId="+chat.creatorId, httpOptions);
+  async getChatUsingNameAndCreatorId(chat: ChatDTO) {
+    return await this.http.post<ChatDTO>(this.getChatUsingNameAndCreatorIdUrl+"?chatName="+chat.chatName+"&creatorId="+chat.creatorId, httpOptions).toPromise();
+  }
+
+  async checkIfMember(chat: ChatDTO, memberId: string): Promise<boolean> {
+    return await this.http.post<boolean>(this.checkIfMemberUrl+"?chatId="+chat.chatId + "&memberId="+memberId, httpOptions).toPromise();
   }
 }

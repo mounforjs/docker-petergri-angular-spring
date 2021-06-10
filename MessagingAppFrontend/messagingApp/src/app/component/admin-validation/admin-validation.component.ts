@@ -32,6 +32,9 @@ export class AdminValidationComponent implements OnInit {
 
     SessionService.isAdmin = true;
     this.adminService.addAdmin(admin).subscribe(subAdmin => {
+      if(subAdmin == null) {
+        // alert("You are already an admin");
+      }
       this.router.navigate(['/chatMenu']);
     });
   }

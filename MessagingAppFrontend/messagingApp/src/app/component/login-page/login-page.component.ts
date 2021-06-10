@@ -27,11 +27,11 @@ export class LoginPageComponent implements OnInit {
     user.userName = form.userName;
     user.userPassword = form.password;
 
-    this.userService.getUser(user).subscribe(foundUser => {
+    this.userService.getUser(user).then(foundUser => {
       if(foundUser != null){
         SessionService.setCurrentUser(foundUser);
         user.userId = foundUser.userId;
-        this.adminService.getAdminForLogin(user).subscribe(foundAdmin => {
+        this.adminService.getAdminForLogin(user).then(foundAdmin => {
           if(foundAdmin != null) {
             SessionService.isAdmin = true;
             console.log("Admin is logged in");

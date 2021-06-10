@@ -7,18 +7,26 @@ import java.sql.Statement;
 
 public class DatabaseConnection {
 
-    public Statement statement;
     private static DatabaseConnection instance;
+    private Connection con;
 
-    private DatabaseConnection(){
+    private DatabaseConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = DriverManager.getConnection(
+            con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/MessagingAppDB?serverTimezone=UTC", "root", "1234");
-            statement = con.createStatement();
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public Statement createStatement() {
+        try {
+            return con.createStatement();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 
     public static DatabaseConnection getInstance(){

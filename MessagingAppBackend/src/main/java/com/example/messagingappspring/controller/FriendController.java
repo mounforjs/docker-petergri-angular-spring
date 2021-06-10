@@ -14,9 +14,9 @@ public class FriendController {
     @RequestMapping("/addFriend")
     public void addFriend(@RequestParam String userId, @RequestParam String friendId) {
         try {
-            databaseConnection.statement.executeUpdate(String.format("INSERT INTO is_friend_of (user_id, friend_id) " +
+            databaseConnection.createStatement().executeUpdate(String.format("INSERT INTO is_friend_of (user_id, friend_id) " +
                     "VALUES(%s, %s)", userId, friendId));
-            databaseConnection.statement.executeUpdate(String.format("INSERT INTO is_friend_of (user_id, friend_id) " +
+            databaseConnection.createStatement().executeUpdate(String.format("INSERT INTO is_friend_of (user_id, friend_id) " +
                     "VALUES(%s, %s)", friendId, userId));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
