@@ -19,6 +19,7 @@ export class UserService {
   getUsersUrl: string = 'http://localhost:8080/getUsers';
   getUserUrl: string = 'http://localhost:8080/getUser';
   addUserUrl: string = 'http://localhost:8080/addUser';
+  addUserMongoUrl: string = 'http://localhost:8080/mongo/addUser';
   removeAllUserUrl: string = 'http://localhost:8080/removeAllUser';
   removeUserUrl: string = 'http://localhost:8080/removeUser';
   getViaNameUrl: string = 'http://localhost:8080/getViaName';
@@ -34,7 +35,7 @@ export class UserService {
   }
 
   addUser(user: User): Observable<User> {
-    return this.http.post<User>(this.addUserUrl, user, httpOptions);
+    return this.http.post<User>(this.addUserMongoUrl, user, httpOptions);
   }
 
   removeAllUser() {
