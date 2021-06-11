@@ -6,6 +6,7 @@ import {ChatDTO} from "../../model/ChatDTO";
 import {SessionService} from "../../service/SessionService";
 import {Admin} from "../../model/Admin";
 import {Router} from "@angular/router";
+import {FriendService} from "../../service/FriendService";
 
 @Component({
   selector: 'new-chat-room',
@@ -16,16 +17,16 @@ export class NewChatRoomComponent implements OnInit {
 
   users:User[] = [];
   usersForNewChatRoom:User[] = []
-  constructor(private router: Router, private userService: UserService, private chatService:ChatService) { }
+  constructor(private router: Router, private userService: UserService, private chatService:ChatService, private friendService:FriendService) { }
 
   ngOnInit(): void {
     if(SessionService.getCurrentUser() === undefined) {
       this.router.navigate(['/login']);
     }
-    this.userService.getUsers().subscribe(users => {
-      for(let user in users) {
-        if(SessionService.getCurrentUser().userId != users[user].userId) {
-          this.users.push(users[user]);
+    this.friendService.getFriends().then(friends => {
+      for(let user in friends) {
+        if(SessionService.getCurrentUser().userId != friends[user].userId) {
+          this.users.push(friends[user]);
         }
       }
     });
