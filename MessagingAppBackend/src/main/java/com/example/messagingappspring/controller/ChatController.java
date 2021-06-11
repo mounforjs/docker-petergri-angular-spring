@@ -30,10 +30,31 @@ public class ChatController {
     }
 
     @CrossOrigin
+    @RequestMapping("/getChatsForUserId")
+    public List<ChatDTO> getChatsForUserId(@RequestParam String userId) {
+        List<ChatDTO> chats = new ArrayList<>();
+        try {
+            List<String> chatIds = new ArrayList<>();
+            ResultSet rs = databaseConnection.createStatement().executeQuery("select * from is_member where member_id="+userId);
+            while(rs.next()) {
+                chatIds.add(String.valueOf(rs.getInt(1)));
+            }
+            for(String chatId : chatIds) {
+                ResultSet resultSet = databaseConnection.createStatement().executeQuery("select * from chat where chat_id=" + chatId);
+                while (resultSet.next()) {
+                    chats.add(new ChatDTO(String.valueOf(resultSet.getInt(1)), resultSet.getString(3), resultSet.getString(4), String.valueOf(resultSet.getInt(5))));
+                }
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return chats;
+    }
+
+    @CrossOrigin
     @RequestMapping("/checkIfMember")
     public boolean checkIfMember(@RequestParam String chatId, @RequestParam String memberId) {
         try {
-
             ResultSet resultSet = databaseConnection.createStatement().executeQuery("select * from is_member where member_id=" + memberId + " and chat_id="+chatId);
             while (resultSet.next()) {
                 return true;

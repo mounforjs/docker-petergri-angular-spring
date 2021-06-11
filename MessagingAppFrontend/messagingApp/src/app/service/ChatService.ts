@@ -27,6 +27,7 @@ export class ChatService {
   addMemberToChatUrl: string = 'http://localhost:8080/addMemberToChat';
   getChatUsingNameAndCreatorIdUrl: string = 'http://localhost:8080/getChatUsingNameAndCreatorId';
   checkIfMemberUrl: string = 'http://localhost:8080/checkIfMember';
+  getChatsForUserIdUrl: string = 'http://localhost:8080/getChatsForUserId';
 
   constructor(private http: HttpClient) {
   }
@@ -65,5 +66,9 @@ export class ChatService {
 
   async checkIfMember(chat: ChatDTO, memberId: string): Promise<boolean> {
     return await this.http.post<boolean>(this.checkIfMemberUrl+"?chatId="+chat.chatId + "&memberId="+memberId, httpOptions).toPromise();
+  }
+
+  async getChatsForUserId(): Promise<ChatDTO[]> {
+    return await this.http.get<ChatDTO[]>(this.getChatsForUserIdUrl+"?userId="+SessionService.getCurrentUser().userId).toPromise();
   }
 }
