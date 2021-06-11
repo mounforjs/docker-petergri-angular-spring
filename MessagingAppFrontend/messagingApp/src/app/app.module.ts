@@ -15,9 +15,11 @@ import { MainManuComponent } from './component/main-manu/main-manu.component';
 import { FormsModule }   from '@angular/forms';
 import { UserComponent } from './component/user/user.component';
 import {HttpClientModule} from "@angular/common/http";
-import { AddFriendComponent } from './add-friend/add-friend.component';
+import { AddFriendComponent } from './component/add-friend/add-friend.component';
 import { HobbyComponent } from './component/hobby/hobby.component';
 import { InviteFriendsComponent } from './component/invite-friends/invite-friends.component';
+import { FirstReportComponent } from './component/first-report/first-report.component';
+import { HeaderComponent } from './component/header/header.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { InviteFriendsComponent } from './component/invite-friends/invite-friend
     UserComponent,
     AddFriendComponent,
     HobbyComponent,
-    InviteFriendsComponent
+    InviteFriendsComponent,
+    FirstReportComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,8 @@ import { InviteFriendsComponent } from './component/invite-friends/invite-friend
       {path: 'chooseHobby', component: NewHobbyComponent},
       {path: 'login', component: LoginPageComponent},
       {path: 'addFriend', component: AddFriendComponent},
-      {path: 'inviteFriends/:chatId', component: InviteFriendsComponent}
+      {path: 'inviteFriends/:chatId', component: InviteFriendsComponent},
+      {path: 'firstReport', component: FirstReportComponent}
     ])
   ],
   providers: [],

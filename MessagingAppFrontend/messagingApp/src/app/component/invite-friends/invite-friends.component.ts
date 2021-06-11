@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ChatService} from "../../service/ChatService";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ChatDTO} from "../../model/ChatDTO";
 import {SessionService} from "../../service/SessionService";
 import {UserService} from "../../service/UserService";
 import {User} from "../../model/User";
