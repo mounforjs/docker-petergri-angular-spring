@@ -20,6 +20,7 @@ import { HobbyComponent } from './component/hobby/hobby.component';
 import { InviteFriendsComponent } from './component/invite-friends/invite-friends.component';
 import { FirstReportComponent } from './component/first-report/first-report.component';
 import { HeaderComponent } from './component/header/header.component';
+import { SecondReportComponent } from './component/second-report/second-report.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { HeaderComponent } from './component/header/header.component';
     HobbyComponent,
     InviteFriendsComponent,
     FirstReportComponent,
-    HeaderComponent
+    HeaderComponent,
+    SecondReportComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ import { HeaderComponent } from './component/header/header.component';
       {path: 'login', component: LoginPageComponent},
       {path: 'addFriend', component: AddFriendComponent},
       {path: 'inviteFriends/:chatId', component: InviteFriendsComponent},
-      {path: 'firstReport', component: FirstReportComponent}
+      {path: 'firstReport', component: FirstReportComponent},
+      {path: 'secondReport', component: SecondReportComponent}
     ])
   ],
   providers: [],
