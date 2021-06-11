@@ -5,6 +5,7 @@ import {ChatDTO} from "../../model/ChatDTO";
 import {SessionService} from "../../service/SessionService";
 import {UserService} from "../../service/UserService";
 import {User} from "../../model/User";
+import {FriendService} from "../../service/FriendService";
 
 @Component({
   selector: 'app-invite-friends',
@@ -19,15 +20,15 @@ export class InviteFriendsComponent implements OnInit {
   @Input()
   chatId: string | null ='';
 
-  constructor(private actRoute: ActivatedRoute, private chatService:ChatService, private router: Router, private userService : UserService) { }
+  constructor(private actRoute: ActivatedRoute, private chatService:ChatService, private router: Router, private userService : UserService, private friendService : FriendService) { }
 
   ngOnInit(): void {
     console.log(this.chatId);
     this.chatId = this.actRoute.snapshot.paramMap.get('chatId');
-    this.userService.getUsers().subscribe(users => {
-      for(let user in users) {
-        if(SessionService.getCurrentUser().userId != users[user].userId) {
-          this.friends.push(users[user]);
+    this.friendService.getFriends().then(friends => {
+      for(let user in friends) {
+        if(SessionService.getCurrentUser().userId != friends[user].userId) {
+          this.friends.push(friends[user]);
         }
       }
     });
