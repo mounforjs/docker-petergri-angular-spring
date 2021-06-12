@@ -35,7 +35,7 @@ export class UserService {
   }
 
   addUser(user: User): Observable<User> {
-    return this.http.post<User>(this.addUserMongoUrl, user, httpOptions);
+    return this.http.post<User>(this.addUserUrl, user, httpOptions);
   }
 
   removeAllUser() {
