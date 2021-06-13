@@ -8,8 +8,6 @@ RUN apt-get update && apt-get install -yq google-chrome-stable git nano
 
 ENV PATH /app/node_modules/.bin:$PATH
 
-RUN git 
-
 RUN npm install
 RUN npm install -g @angular/cli@7.0.6
 
