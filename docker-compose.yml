@@ -45,7 +45,7 @@ services:
       - MYSQL_USER
     volumes:
       - data:/var/lib/mysql
-      - ./mysql/mysql.sql:/docker-entrypoint-initdb.d/mysql.sql
+      - ./docker/mysql/mysql.sql:/docker-entrypoint-initdb.d/mysql.sql
     ports:
       - "3306:3306"
     networks:
@@ -68,7 +68,7 @@ services:
     networks:
       - net
 
-      
+
 volumes:
   m2:
   node_modules:
