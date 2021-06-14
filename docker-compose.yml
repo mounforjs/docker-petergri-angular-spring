@@ -31,5 +31,6 @@ services:
 
 volumes:
   m2:
+  node_modules:
 networks:
   net:
