@@ -5,7 +5,7 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: ./frontend/Dockerfile
+      dockerfile: ./docker/frontend/Dockerfile
     container_name: 'frontend'
     volumes:
       - ./MessagingAppFrontend/messagingApp:/code
@@ -18,7 +18,7 @@ services:
   backend:
     build:
       context: .
-      dockerfile: ./backend/Dockerfile
+      dockerfile: ./docker/backend/Dockerfile
     container_name: "backend"
     command: /app/mvnw spring-boot:run
     build: .
