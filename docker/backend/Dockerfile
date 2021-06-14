@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN apt-get update
 
-COPY ./MessagingAppBackend /app
+COPY . /app
 
 RUN chmod +x /app/mvnw
 

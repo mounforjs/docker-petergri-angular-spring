@@ -8,11 +8,9 @@ RUN apt-get update && apt-get install -yq google-chrome-stable git nano
 
 ENV PATH /app/node_modules/.bin:$PATH
 
-COPY ./MessagingAppFrontend/messagingApp /app
+COPY . /app
 
 RUN npm install
-RUN npm install dotenv
-RUN npm install --dotenv-extended
 
 
 CMD ng serve --host 0.0.0.0

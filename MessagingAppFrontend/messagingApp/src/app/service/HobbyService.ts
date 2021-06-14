@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class HobbyService {
 
-  getHobbiesUrl: string = 'http://35.239.210.35:8080/getHobbies';
+  getHobbiesUrl: string = 'http://localhost:8080/getHobbies';
 
   constructor(private http: HttpClient) {
   }

@@ -19,7 +19,7 @@ const httpOptions = {
 })
 export class ChoosesService {
 
-  addChoiceUrl: string = 'http://35.239.210.35:8080/addChoice';
+  addChoiceUrl: string = 'http://localhost:8080/addChoice';
 
   constructor(private http: HttpClient) {
   }
