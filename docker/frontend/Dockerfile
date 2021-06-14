@@ -11,6 +11,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY ./MessagingAppFrontend/messagingApp /app
 
 RUN npm install
+RUN npm install dotenv
 RUN npm install --dotenv-extended
 
 
