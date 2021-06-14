@@ -18,16 +18,16 @@ const httpOptions = {
 export class UserService {
 
   // MySQL Endpoints
-  getUsersUrl: string = process.env.BACKEND_URL + '/getUsers';
-  getUserUrl: string = process.env.BACKEND_URL + '/getUser';
-  addUserUrl: string = process.env.BACKEND_URL + '/addUser';
-  removeAllUserUrl: string = process.env.BACKEND_URL + '/removeAllUser';
-  removeUserUrl: string = process.env.BACKEND_URL + '/removeUser';
-  getViaNameUrl: string = process.env.BACKEND_URL + '/getViaName';
+  getUsersUrl: string = 'http://http://35.239.210.35:8080/getUsers';
+  getUserUrl: string = 'http://http://35.239.210.35:8080/getUser';
+  addUserUrl: string = 'http://http://35.239.210.35:8080/addUser';
+  removeAllUserUrl: string = 'http://http://35.239.210.35:8080/removeAllUser';
+  removeUserUrl: string = 'http://http://35.239.210.35:8080/removeUser';
+  getViaNameUrl: string = 'http://http://35.239.210.35:8080/getViaName';
 
 
   // MongoDB Endpoints
-  addUserMongoUrl: string = process.env.BACKEND_URL + '/mongo/addUser';
+  addUserMongoUrl: string = 'http://http://35.239.210.35:8080/mongo/addUser';
 
 
   constructor(private http: HttpClient) {

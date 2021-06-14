@@ -16,8 +16,8 @@ const httpOptions = {
 })
 export class ReportsService {
 
-  firstReportUrl: string = process.env.BACKEND_URL + '/firstReport';
-  secondReportUrl: string = process.env.BACKEND_URL + '/secondReport';
+  firstReportUrl: string = 'http://http://35.239.210.35:8080/firstReport';
+  secondReportUrl: string = 'http://http://35.239.210.35:8080/secondReport';
 
   constructor(private http: HttpClient) {
   }

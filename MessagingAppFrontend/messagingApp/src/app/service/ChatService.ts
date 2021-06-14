@@ -20,21 +20,21 @@ const httpOptions = {
 export class ChatService {
 
   // MySQL Endpoints
-  getChatsUrl: string = process.env.BACKEND_URL + '/getChats';
-  getMessagesUrl: string = process.env.BACKEND_URL + '/getMessages';
-  getChatUrl: string = process.env.BACKEND_URL + '/getChat/';
-  addChatUrl: string = process.env.BACKEND_URL + '/addNewChat';
-  addMessageUrl: string = process.env.BACKEND_URL + '/addMessage';
-  getMemberIdsOfGivenChatUrl: string = process.env.BACKEND_URL + '/getMemberIdsOfGivenChat';
-  addMemberToChatUrl: string = process.env.BACKEND_URL + '/addMemberToChat';
-  getChatUsingNameAndCreatorIdUrl: string = process.env.BACKEND_URL + '/getChatUsingNameAndCreatorId';
-  checkIfMemberUrl: string = process.env.BACKEND_URL + '/checkIfMember';
-  getChatsForUserIdUrl: string = process.env.BACKEND_URL + '/getChatsForUserId';
+  getChatsUrl: string = 'http://http://35.239.210.35:8080/getChats';
+  getMessagesUrl: string = 'http://http://35.239.210.35:8080/getMessages';
+  getChatUrl: string = 'http://http://35.239.210.35:8080/getChat/';
+  addChatUrl: string = 'http://http://35.239.210.35:8080/addNewChat';
+  addMessageUrl: string = 'http://http://35.239.210.35:8080/addMessage';
+  getMemberIdsOfGivenChatUrl: string = 'http://http://35.239.210.35:8080/getMemberIdsOfGivenChat';
+  addMemberToChatUrl: string = 'http://http://35.239.210.35:8080/addMemberToChat';
+  getChatUsingNameAndCreatorIdUrl: string = 'http://http://35.239.210.35:8080/getChatUsingNameAndCreatorId';
+  checkIfMemberUrl: string = 'http://http://35.239.210.35:8080/checkIfMember';
+  getChatsForUserIdUrl: string = 'http://http://35.239.210.35:8080/getChatsForUserId';
 
   // MongoDB Endpoints
-  addChatMongoUrl: string = process.env.BACKEND_URL + '/mongo/addNewChat';
-  addMemberToChatMongoUrl: string = process.env.BACKEND_URL + '/mongo/addMemberToChat';
-  getMemberIdsOfGivenChatMongoUrl: string = process.env.BACKEND_URL + '/mongo/getMemberIdsOfGivenChat';
+  addChatMongoUrl: string = 'http://http://35.239.210.35:8080/mongo/addNewChat';
+  addMemberToChatMongoUrl: string = 'http://http://35.239.210.35:8080/mongo/addMemberToChat';
+  getMemberIdsOfGivenChatMongoUrl: string = 'http://http://35.239.210.35:8080/mongo/getMemberIdsOfGivenChat';
 
 
   constructor(private http: HttpClient) {
