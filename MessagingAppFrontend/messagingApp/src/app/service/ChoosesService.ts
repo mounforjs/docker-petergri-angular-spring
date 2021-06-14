@@ -19,7 +19,7 @@ const httpOptions = {
 })
 export class ChoosesService {
 
-  addChoiceUrl: string = 'http://localhost:8080/addChoice';
+  addChoiceUrl: string = process.env.BACKEND_URL + '/addChoice';
 
   constructor(private http: HttpClient) {
   }

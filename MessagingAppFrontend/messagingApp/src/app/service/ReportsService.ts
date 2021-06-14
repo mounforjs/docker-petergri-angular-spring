@@ -16,8 +16,8 @@ const httpOptions = {
 })
 export class ReportsService {
 
-  firstReportUrl: string = 'http://localhost:8080/firstReport';
-  secondReportUrl: string = 'http://localhost:8080/secondReport';
+  firstReportUrl: string = process.env.BACKEND_URL + '/firstReport';
+  secondReportUrl: string = process.env.BACKEND_URL + '/secondReport';
 
   constructor(private http: HttpClient) {
   }

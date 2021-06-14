@@ -16,8 +16,8 @@ const httpOptions = {
 })
 export class FriendService {
 
-  addFriendServiceUrl: string = 'http://localhost:8080/addFriend';
-  getFriendsUrl: string = 'http://localhost:8080/getFriends';
+  addFriendServiceUrl: string = process.env.BACKEND_URL + '/addFriend';
+  getFriendsUrl: string = process.env.BACKEND_URL + '/getFriends';
   constructor(private http: HttpClient) {
   }
 

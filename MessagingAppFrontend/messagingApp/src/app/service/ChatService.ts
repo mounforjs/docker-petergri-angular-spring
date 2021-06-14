@@ -20,21 +20,21 @@ const httpOptions = {
 export class ChatService {
 
   // MySQL Endpoints
-  getChatsUrl: string = 'http://localhost:8080/getChats';
-  getMessagesUrl: string = 'http://localhost:8080/getMessages';
-  getChatUrl: string = 'http://localhost:8080/getChat/';
-  addChatUrl: string = 'http://localhost:8080/addNewChat';
-  addMessageUrl: string = 'http://localhost:8080/addMessage';
-  getMemberIdsOfGivenChatUrl: string = 'http://localhost:8080/getMemberIdsOfGivenChat';
-  addMemberToChatUrl: string = 'http://localhost:8080/addMemberToChat';
-  getChatUsingNameAndCreatorIdUrl: string = 'http://localhost:8080/getChatUsingNameAndCreatorId';
-  checkIfMemberUrl: string = 'http://localhost:8080/checkIfMember';
-  getChatsForUserIdUrl: string = 'http://localhost:8080/getChatsForUserId';
+  getChatsUrl: string = process.env.BACKEND_URL + '/getChats';
+  getMessagesUrl: string = process.env.BACKEND_URL + '/getMessages';
+  getChatUrl: string = process.env.BACKEND_URL + '/getChat/';
+  addChatUrl: string = process.env.BACKEND_URL + '/addNewChat';
+  addMessageUrl: string = process.env.BACKEND_URL + '/addMessage';
+  getMemberIdsOfGivenChatUrl: string = process.env.BACKEND_URL + '/getMemberIdsOfGivenChat';
+  addMemberToChatUrl: string = process.env.BACKEND_URL + '/addMemberToChat';
+  getChatUsingNameAndCreatorIdUrl: string = process.env.BACKEND_URL + '/getChatUsingNameAndCreatorId';
+  checkIfMemberUrl: string = process.env.BACKEND_URL + '/checkIfMember';
+  getChatsForUserIdUrl: string = process.env.BACKEND_URL + '/getChatsForUserId';
 
   // MongoDB Endpoints
-  addChatMongoUrl: string = 'http://localhost:8080/mongo/addNewChat';
-  addMemberToChatMongoUrl: string = 'http://localhost:8080/mongo/addMemberToChat';
-  getMemberIdsOfGivenChatMongoUrl: string = 'http://localhost:8080/mongo/getMemberIdsOfGivenChat';
+  addChatMongoUrl: string = process.env.BACKEND_URL + '/mongo/addNewChat';
+  addMemberToChatMongoUrl: string = process.env.BACKEND_URL + '/mongo/addMemberToChat';
+  getMemberIdsOfGivenChatMongoUrl: string = process.env.BACKEND_URL + '/mongo/getMemberIdsOfGivenChat';
 
 
   constructor(private http: HttpClient) {

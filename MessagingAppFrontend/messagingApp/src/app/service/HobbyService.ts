@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class HobbyService {
 
-  getHobbiesUrl: string = 'http://localhost:8080/getHobbies';
+  getHobbiesUrl: string = process.env.BACKEND_URL + '/getHobbies';
 
   constructor(private http: HttpClient) {
   }
