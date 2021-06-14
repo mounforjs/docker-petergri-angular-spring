@@ -6,7 +6,7 @@ import {Admin} from "../model/Admin";
 import {DBSwitchService} from "./DBSwitchService";
 import {config as configDotenv} from 'dotenv'
 
-//configDotenv.config();
+configDotenv.config();
 
 
 
