@@ -4,6 +4,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from "../model/User";
 import {Admin} from "../model/Admin";
 import {DBSwitchService} from "./DBSwitchService";
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,13 +21,13 @@ const httpOptions = {
 export class AdminService {
 
   // MySQL Endpoints
-  getAdminUrl: string = 'http://http://35.239.210.35:8080/getAdmin';
-  addAdminUrl: string = 'http://http://35.239.210.35:8080/addAdmin';
-  getAdminForLoginUrl: string = 'http://http://35.239.210.35:8080/getAdminForLogin';
+  getAdminUrl: string = 'http://35.239.210.35:8080/getAdmin';
+  addAdminUrl: string = 'http://35.239.210.35:8080/addAdmin';
+  getAdminForLoginUrl: string = 'http://35.239.210.35:8080/getAdminForLogin';
 
   // MongoDB Endpoints
-  addAdminMongoUrl: string = 'http://http://35.239.210.35:8080/mongo/addAdmin';
-  getAdminForLoginMongoUrl: string = 'http://http://35.239.210.35:8080/mongo/getAdminForLogin';
+  addAdminMongoUrl: string = 'http://35.239.210.35:8080/mongo/addAdmin';
+  getAdminForLoginMongoUrl: string = 'http://35.239.210.35:8080/mongo/getAdminForLogin';
 
 
   constructor(private http: HttpClient) {
