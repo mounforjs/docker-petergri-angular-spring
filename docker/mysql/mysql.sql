@@ -1,5 +1,5 @@
 CREATE DATABASE IF NOT EXISTS MessagingAppDB;
-GRANT ALL PRIVILEGES ON main.* To 'admin'@'%';
+GRANT ALL PRIVILEGES ON MessagingAppDB.* To 'admin'@'%';
 
 USE MessagingAppDB; 
 
