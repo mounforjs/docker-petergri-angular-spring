@@ -20,13 +20,13 @@ const httpOptions = {
 export class AdminService {
 
   // MySQL Endpoints
-  getAdminUrl: string = 'http://localhost:8080/getAdmin';
-  addAdminUrl: string = 'http://localhost:8080/addAdmin';
-  getAdminForLoginUrl: string = 'http://localhost:8080/getAdminForLogin';
+  getAdminUrl: string = 'http://35.239.210.35:8080/getAdmin';
+  addAdminUrl: string = 'http://35.239.210.35:8080/addAdmin';
+  getAdminForLoginUrl: string = 'http://35.239.210.35:8080/getAdminForLogin';
 
   // MongoDB Endpoints
-  addAdminMongoUrl: string = 'http://localhost:8080/mongo/addAdmin';
-  getAdminForLoginMongoUrl: string = 'http://localhost:8080/mongo/getAdminForLogin';
+  addAdminMongoUrl: string = 'http://35.239.210.35:8080/mongo/addAdmin';
+  getAdminForLoginMongoUrl: string = 'http://35.239.210.35:8080/mongo/getAdminForLogin';
 
 
   constructor(private http: HttpClient) {

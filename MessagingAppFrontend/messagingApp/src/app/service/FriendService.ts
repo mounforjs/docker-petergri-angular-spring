@@ -16,8 +16,8 @@ const httpOptions = {
 })
 export class FriendService {
 
-  addFriendServiceUrl: string = 'http://localhost:8080/addFriend';
-  getFriendsUrl: string = 'http://localhost:8080/getFriends';
+  addFriendServiceUrl: string = 'http://35.239.210.35:8080/addFriend';
+  getFriendsUrl: string = 'http://35.239.210.35:8080/getFriends';
   constructor(private http: HttpClient) {
   }
 

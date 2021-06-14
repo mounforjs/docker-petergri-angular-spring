@@ -16,8 +16,8 @@ const httpOptions = {
 })
 export class ReportsService {
 
-  firstReportUrl: string = 'http://localhost:8080/firstReport';
-  secondReportUrl: string = 'http://localhost:8080/secondReport';
+  firstReportUrl: string = 'http://35.239.210.35:8080/firstReport';
+  secondReportUrl: string = 'http://35.239.210.35:8080/secondReport';
 
   constructor(private http: HttpClient) {
   }
