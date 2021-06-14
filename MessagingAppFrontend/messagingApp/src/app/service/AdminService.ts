@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from "../model/User";
 import {Admin} from "../model/Admin";
 import {DBSwitchService} from "./DBSwitchService";
-import process = require('process');
+
 
 
 const httpOptions = {
