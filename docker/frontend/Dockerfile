@@ -8,11 +8,10 @@ RUN apt-get update && apt-get install -yq google-chrome-stable git nano
 
 ENV PATH /app/node_modules/.bin:$PATH
 
+COPY ./MessagingAppFrontend/messagingApp /app
+
 RUN npm install
 RUN npm install -g @angular/cli@7.0.6
-
-
-COPY ./MessagingAppFrontend/messagingApp /app
 
 
 CMD ng serve --host 0.0.0.0

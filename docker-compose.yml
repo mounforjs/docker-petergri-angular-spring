@@ -21,7 +21,6 @@ services:
       dockerfile: ./docker/backend/Dockerfile
     container_name: "backend"
     command: /app/mvnw spring-boot:run
-    build: .
     working_dir: /app
     volumes:
       - ./MessagingAppBackend:/app
