@@ -12,7 +12,7 @@ RUN npm install
 RUN npm install -g @angular/cli@7.0.6
 
 
-COPY ./app /app
+COPY ./MessagingAppFrontend/messagingApp /app
 
 
 CMD ng serve --host 0.0.0.0
