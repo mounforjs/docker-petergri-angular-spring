@@ -4,8 +4,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from "../model/User";
 import {Admin} from "../model/Admin";
 import {DBSwitchService} from "./DBSwitchService";
+import {config as configDotenv} from 'dotenv'
 
-
+configDotenv.config();
 
 const httpOptions = {
   headers: new HttpHeaders({
