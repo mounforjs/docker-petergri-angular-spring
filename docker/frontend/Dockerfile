@@ -11,7 +11,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY ./MessagingAppFrontend/messagingApp /app
 
 RUN npm install
-RUN npm install --save @types/node
+RUN npm install dotenv
 
 
 CMD ng serve --host 0.0.0.0
