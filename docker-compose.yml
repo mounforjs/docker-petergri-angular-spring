@@ -71,7 +71,7 @@ services:
 volumes:
   m2:
   node_modules:
-  mysql:
+  data:
   mongodb:
 networks:
   net:
