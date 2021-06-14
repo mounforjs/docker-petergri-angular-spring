@@ -6,7 +6,7 @@ import {Admin} from "../model/Admin";
 import {DBSwitchService} from "./DBSwitchService";
 import * as dotenv from 'dotenv';
 
-dotenv.config();
+
 
 const httpOptions = {
   headers: new HttpHeaders({
