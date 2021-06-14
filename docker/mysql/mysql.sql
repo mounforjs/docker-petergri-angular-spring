@@ -1,8 +1,7 @@
-CREATE DATABASE IF NOT EXISTS serverTimezone;
+CREATE DATABASE IF NOT EXISTS MessagingAppDB;
 GRANT ALL PRIVILEGES ON main.* To 'admin'@'%';
 
-USE serverTimezone; 
-
+USE MessagingAppDB; 
 
 CREATE TABLE user_info (
   user_id INT AUTO_INCREMENT NOT NULL,
