@@ -17,7 +17,7 @@ import java.util.List;
 @RestController()
 @RequestMapping("mongo")
 public class MongoDBController {
-    MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
+    MongoClient mongoClient = MongoClients.create("mongodb://mongo:27017");
     MongoDatabase database = mongoClient.getDatabase("messagingappdb");
     MongoCollection<Document> userCollection = database.getCollection("user_info");
     MongoCollection<Document> chatCollection = database.getCollection("chat");

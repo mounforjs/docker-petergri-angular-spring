@@ -14,7 +14,7 @@ public class DatabaseConnection {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/MessagingAppDB?serverTimezone=UTC", "root", "1234");
+                    "jdbc:mysql://mysql:3306/MessagingAppDB?serverTimezone=UTC", "admin", "sadfs$.df3fg");
         } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }

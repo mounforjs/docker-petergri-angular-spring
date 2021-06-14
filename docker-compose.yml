@@ -7,6 +7,7 @@ services:
       context: .
       dockerfile: ./docker/frontend/Dockerfile
     container_name: 'frontend'
+    restart: unless-stopped
     volumes:
       - ./MessagingAppFrontend/messagingApp:/code
       - node_modules:/code/node_modules
@@ -20,11 +21,50 @@ services:
       context: .
       dockerfile: ./docker/backend/Dockerfile
     container_name: "backend"
+    restart: unless-stopped
     command: /app/mvnw spring-boot:run
     working_dir: /app
+    depends_on: 
+      - mysql
+      - mongo
     volumes:
       - ./MessagingAppBackend:/app
       - m2:/root/.m2
+    networks:
+      - net
+  
+  mysql:
+    container_name: "mysql"
+    restart: unless-stopped
+    image: mysql:5.7
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_bin --sql_mode=''
+    environment:
+      - MYSQL_DATABASE
+      - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_USER
+    volumes:
+      - data:/var/lib/mysql
+      - ./mysql/mysql.sql:/docker-entrypoint-initdb.d/mysql.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - net
+  
+  mongo:
+    container_name: mongo
+    image: mongo:4.4
+    restart: unless-stopped
+    hostname: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - LANG=C.UTF-8
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
+      - MONGO_INITDB_DATABASE
+    volumes:
+      - mongodb:/data/db
     networks:
       - net
 
